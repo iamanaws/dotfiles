@@ -5,15 +5,15 @@
   hicolor-icon-theme,
 }:
 
-stdenvNoCC.mkDerivation rec {
+stdenvNoCC.mkDerivation {
   pname = "kuyen-icons";
-  version = "2.0";
+  version = "2.0"; # https://www.opendesktop.org/p/1290492/
 
   src = fetchFromGitLab {
     owner = "froodo_alexis";
     repo = "kuyen-icons";
     rev = "7d4fdecf7121ae6077e5d22501a13ba5eb54a9f6";
-    sha256 = "sha256-28AAcjg8f0FWwbYeYOMX5OJX2eYL6/a3dgu1HlkW2ZU=";
+    hash = "sha256-28AAcjg8f0FWwbYeYOMX5OJX2eYL6/a3dgu1HlkW2ZU=";
   };
 
   propagatedBuildInputs = [ hicolor-icon-theme ];
@@ -21,11 +21,13 @@ stdenvNoCC.mkDerivation rec {
   dontDropIconThemeCache = true;
 
   installPhase = ''
+    runHook preInstall
     mkdir -p $out/share/icons/kuyen-icons
     cp -r * $out/share/icons/kuyen-icons
 
-    # Remove or fix broken symlinks
+    # Remove broken symlinks
     find $out/share/icons/kuyen-icons -xtype l -delete
+    runHook postInstall
   '';
 
   meta = {
