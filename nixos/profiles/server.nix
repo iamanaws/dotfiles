@@ -3,11 +3,12 @@
   config,
   lib,
   pkgs,
+  nixosModules,
   ...
 }:
 
 {
-  imports = [ ../core ];
+  imports = [ nixosModules.profiles.core ];
 
   networking.firewall = {
     enable = true;

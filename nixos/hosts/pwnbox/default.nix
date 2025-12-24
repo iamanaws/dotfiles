@@ -5,40 +5,20 @@
   lib,
   pkgs,
   systemType,
+  flakeRoot,
   ...
 }:
 
 {
   imports = [
-    ../../roles/core
     ./display.nix
-    ./options.nix
   ];
-
-  networking.hostName = "pwnbox";
 
   users.users = {
     iamanaws = {
       initialPassword = "password123!";
-      isNormalUser = true;
       openssh.authorizedKeys.keys = [
       ];
-      extraGroups = [
-        "wheel"
-        "input"
-      ];
-    };
-  };
-
-  home-manager = {
-    useUserPackages = true;
-
-    extraSpecialArgs = {
-      inherit inputs outputs systemType;
-      hostConfig = config;
-    };
-    users = {
-      iamanaws = import ../../../home/users/iamanaws/nixos/pwnbox;
     };
   };
 
@@ -104,6 +84,13 @@
     d /mnt/hostshare 0755 root root -
   '';
 
+  # Required root filesystem definition for successful NixOS evaluation.
+  # Using a disk label is a sensible default; override if needed per deployment.
+  fileSystems."/" = lib.mkDefault {
+    device = "/dev/disk/by-label/nixos";
+    fsType = "ext4";
+  };
+
   # Define the filesystem mount for the shared directory within the guest
   fileSystems."/mnt/hostshare" = {
     device = "hostshare";
@@ -122,6 +109,4 @@
   services.spice-vdagentd.enable = true;
   environment.etc.hosts.mode = "0644";
 
-  system.stateVersion = "24.11";
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

@@ -5,12 +5,13 @@
   lib,
   pkgs,
   systemType,
+  nixosModules,
   ...
 }:
 
 {
   imports = [
-    ../../programs/nix.nix
+    nixosModules.programs.nix
     # Import home-manager's NixOS module
     inputs.home-manager.nixosModules.home-manager
     inputs.disko.nixosModules.disko
@@ -56,16 +57,11 @@
   # networking.wireless.enable = lib.mkDefault true;  # Enables wireless support via wpa_supplicant.
   networking.networkmanager.enable = lib.mkDefault true; # Easiest to use and most distros use this by default.
 
-  # Set your time zone.
-  time.timeZone = "America/Tijuana";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
   console = {
     #font = "Lat2-Terminus16";
-    packages = [ pkgs.terminus_font ];
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-i22b.psf.gz";
-    keyMap = "la-latin1";
+    packages = lib.mkDefault [ pkgs.terminus_font ];
+    font = lib.mkDefault "${pkgs.terminus_font}/share/consolefonts/ter-i18b.psf.gz";
+    keyMap = lib.mkDefault "la-latin1";
   };
 
   # Enable CUPS to print documents.

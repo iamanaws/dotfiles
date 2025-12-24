@@ -1,21 +1,21 @@
 {
   device = {
     system = "x86_64-linux";
-    hostname = "pwnbox";
-    profile = "vm/virtualbox";
+    hostname = "daedalus";
+    profile = "server";
     users = [
       {
         name = "iamanaws";
         groups = [
           "wheel"
           "input"
+          "networkmanager"
         ];
-        homeManager.module = "nixos/pwnbox";
       }
     ];
-    displayServer = "wayland";
-    stateVersion = "25.11";
-    timezone = "UTC";
+    displayServer = null;
+    stateVersion = "25.05";
+    timezone = "America/Tijuana";
     locale = "en_US.UTF-8";
   };
 }

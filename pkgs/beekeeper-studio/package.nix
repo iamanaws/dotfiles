@@ -1,7 +1,6 @@
 {
   lib,
   stdenv,
-  stdenvNoCC,
   fetchurl,
   dpkg,
   unzip,
@@ -32,13 +31,13 @@
   krb5,
 }:
 
-stdenvNoCC.mkDerivation (finalAttrs: {
+stdenv.mkDerivation (finalAttrs: {
   pname = "beekeeper-studio";
-  version = "5.4.9";
+  version = "5.5.2";
 
   src =
     let
-      selectSystem = attrs: attrs.${stdenvNoCC.hostPlatform.system};
+      selectSystem = attrs: attrs.${stdenv.hostPlatform.system};
       asset = selectSystem {
         x86_64-linux = "beekeeper-studio_${finalAttrs.version}_amd64.deb";
         aarch64-linux = "beekeeper-studio_${finalAttrs.version}_arm64.deb";
@@ -49,22 +48,22 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     fetchurl {
       url = "https://github.com/beekeeper-studio/beekeeper-studio/releases/download/v${finalAttrs.version}/${asset}";
       hash = selectSystem {
-        x86_64-linux = "sha256-KKZmjSemVv+suwAtiAArGzWImEyqaq+OMisr380mlOE=";
-        aarch64-linux = "sha256-4k148USqXvzrvS8qgDpMzgTI9TR732hIpaD+w7TgEhw=";
-        x86_64-darwin = "sha256-IjstR9HK74NeIMkf93gf15LcdMCYqEYl8OKAoJLtzoo=";
-        aarch64-darwin = "sha256-+eA/Iv+qzwmn+KVd5hNmGWyPeZIshOw9X7eFXCWKxIY=";
+        x86_64-linux = "sha256-Hsv42bIUmXqplUTR/ut/oM1GisToFzGmHe5kVrwz/+I=";
+        aarch64-linux = "sha256-NJInl37drT4M/FwhzZ6hcSz1NIaLtb4F8JJVNxmAYxk=";
+        x86_64-darwin = "sha256-V+QI+Snthp/pVOPkC5wy2BrPyf3AxyelnrZ7F4bIchA=";
+        aarch64-darwin = "sha256-eYK7igenPKLVhwCkd7D/0NwedL7cJrRu/Sb2qN4OMOE=";
       };
     };
 
   nativeBuildInputs =
-    lib.optionals stdenvNoCC.hostPlatform.isLinux [
+    lib.optionals stdenv.hostPlatform.isLinux [
       dpkg
       autoPatchelfHook
       makeWrapper
     ]
-    ++ lib.optionals stdenvNoCC.hostPlatform.isDarwin [ unzip ];
+    ++ lib.optionals stdenv.hostPlatform.isDarwin [ unzip ];
 
-  buildInputs = lib.optionals stdenvNoCC.hostPlatform.isLinux [
+  buildInputs = lib.optionals stdenv.hostPlatform.isLinux [
     (lib.getLib stdenv.cc.cc)
     xorg.libX11
     xorg.libXcomposite
@@ -95,42 +94,37 @@ stdenvNoCC.mkDerivation (finalAttrs: {
     krb5
   ];
 
-  runtimeDependencies = lib.optionals stdenvNoCC.hostPlatform.isLinux (map lib.getLib [ systemd ]);
+  runtimeDependencies = lib.optionals stdenv.hostPlatform.isLinux (lib.getLib systemd);
 
   installPhase = ''
     runHook preInstall
-
-    ${lib.optionalString stdenvNoCC.hostPlatform.isLinux ''
-      cp -r usr $out
-      substituteInPlace $out/share/applications/beekeeper-studio.desktop \
-        --replace-fail '"/opt/Beekeeper Studio/beekeeper-studio"' "beekeeper-studio"
-      mkdir -p $out/opt $out/bin
-      cp -r opt/"Beekeeper Studio" $out/opt/beekeeper-studio
-      makeWrapper $out/opt/beekeeper-studio/beekeeper-studio-bin $out/bin/beekeeper-studio \
-        --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
-    ''}
-    ${lib.optionalString stdenvNoCC.hostPlatform.isDarwin (
-      ''
-        mkdir -p "$out/Applications" "$out/bin"
-        cp -R . "$out/Applications/Beekeeper Studio.app"
-      ''
-      +
-        # Create a launcher script to run from the command line
-        ''
-          cat > "$out/bin/beekeeper-studio" << EOF
-          #!${runtimeShell}
-          open -na "$out/Applications/Beekeeper Studio.app" --args "\$@"
-          EOF
-          chmod +x "$out/bin/beekeeper-studio"
-        ''
-    )}
-
+  ''
+  + lib.optionalString stdenv.hostPlatform.isLinux ''
+    cp -r usr $out
+    substituteInPlace $out/share/applications/beekeeper-studio.desktop \
+      --replace-fail '"/opt/Beekeeper Studio/beekeeper-studio"' "beekeeper-studio"
+    mkdir -p $out/opt $out/bin
+    cp -r opt/"Beekeeper Studio" $out/opt/beekeeper-studio
+    makeWrapper $out/opt/beekeeper-studio/beekeeper-studio-bin $out/bin/beekeeper-studio \
+      --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform-hint=auto --enable-features=WaylandWindowDecorations --enable-wayland-ime=true}}"
+  ''
+  + lib.optionalString stdenv.hostPlatform.isDarwin ''
+    mkdir -p "$out/Applications" "$out/bin"
+    cp -R . "$out/Applications/Beekeeper Studio.app"
+    # Create a launcher script to run from the command line
+    cat > "$out/bin/beekeeper-studio" << EOF
+    #!${runtimeShell}
+    open -na "$out/Applications/Beekeeper Studio.app" --args "\$@"
+    EOF
+    chmod +x "$out/bin/beekeeper-studio"
+  ''
+  + ''
     runHook postInstall
   '';
 
-  dontFixup = stdenvNoCC.hostPlatform.isDarwin;
+  dontFixup = stdenv.hostPlatform.isDarwin;
 
-  preFixup = lib.optionalString stdenvNoCC.hostPlatform.isLinux ''
+  preFixup = lib.optionalString stdenv.hostPlatform.isLinux ''
     patchelf --add-needed libGL.so.1 \
       --add-needed libEGL.so.1 \
       --add-rpath ${
@@ -160,6 +154,6 @@ stdenvNoCC.mkDerivation (finalAttrs: {
       "aarch64-darwin"
       "x86_64-darwin"
     ];
-    knownVulnerabilities = [ "Electron version 31 is EOL" ];
+    knownVulnerabilities = [ "Electron version 32 is EOL" ];
   };
 })

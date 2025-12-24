@@ -1,6 +1,8 @@
-{ lib, ... }:
+{ lib, flakeRoot, ... }:
 
 {
+  nixpkgs.config.permittedInsecurePackages = import (flakeRoot + /lib/permittedInsecurePackages.nix);
+
   nix = {
     settings = {
       experimental-features = [

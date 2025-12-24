@@ -6,15 +6,16 @@
   lib,
   pkgs,
   systemType,
+  nixosModules,
   ...
 }:
 
 {
   imports = [
-    ../programs/firefox.nix
+    nixosModules.programs.firefox
   ]
-  ++ lib.optional (systemType == "x11") ./qtile.nix
-  ++ lib.optional (systemType == "wayland") ./hyprland.nix;
+  ++ lib.optional (systemType == "x11") nixosModules.display.qtile
+  ++ lib.optional (systemType == "wayland") nixosModules.display.hyprland;
 
   fonts.packages = with pkgs; [
     nerd-fonts.caskaydia-cove

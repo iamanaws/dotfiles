@@ -6,13 +6,13 @@
   lib,
   pkgs,
   systemType,
+  nixosModules,
   ...
 }:
 
 {
-  imports = [
-    ../core
-    ../../display
+  imports = with nixosModules; [
+    profiles.core
+    display.default
   ];
-
 }

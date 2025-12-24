@@ -9,11 +9,15 @@
   ...
 }:
 
+let
+  flakeOverlays =
+    if outputs ? overlays then outputs.overlays else import ../../../../overlays { inherit inputs; };
+in
 {
   imports = [
     ../../config/shell
     ../../config/shell/bash.nix
-    ../../config/dunst.nix
+    ../../config/dunst
     ../../config/kitty.nix
     ../../config/hypr/hyprlock/hyprlock.nix
     ../../config/hypr/hyprland.nix
@@ -37,8 +41,8 @@
 
   nixpkgs = {
     overlays = [
-      outputs.overlays.additions
-      outputs.overlays.modifications
+      flakeOverlays.additions
+      flakeOverlays.modifications
     ];
     config = {
       allowUnfree = true;

@@ -5,13 +5,14 @@
   lib,
   pkgs,
   systemType,
+  nixosModules,
   ...
 }:
 
 {
-  imports = [
-    ../core
-    ../../display
+  imports = with nixosModules; [
+    profiles.core
+    display.default
   ];
 
   # Pick only one of the below networking options.
