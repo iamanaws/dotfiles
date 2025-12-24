@@ -5,17 +5,17 @@
   lib,
   pkgs,
   systemType,
+  darwinModules,
+  homeUsersRoot,
   ...
 }:
 
 {
   imports = [
-    ./../..
+    darwinModules.default
     ./homebrew.nix
   ];
 
-  # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = "aarch64-darwin";
   nixpkgs.config.allowUnfree = true;
 
   nixpkgs.overlays = [
@@ -26,27 +26,7 @@
   # Enable alternative shell support in nix-darwin.
   # programs.fish.enable = true;
 
-  networking = {
-    # Charles (Robert), SteveAir, Galileo
-    computerName = "Galileo";
-    hostName = "Galileo";
-    localHostName = "Galileo";
-  };
-
-  users.users = {
-    iamanaws = {
-      home = "/Users/iamanaws";
-    };
-  };
   system.primaryUser = "iamanaws";
-
-  home-manager = {
-    extraSpecialArgs = { inherit outputs systemType; };
-    users = {
-      # Import your home-manager configuration
-      iamanaws = import ../../../home/users/iamanaws/darwin;
-    };
-  };
 
   fonts.packages = with pkgs.nerd-fonts; [ caskaydia-mono ];
 
@@ -115,7 +95,4 @@
       _FXSortFoldersFirstOnDesktop = true;
     };
   };
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 5;
 }

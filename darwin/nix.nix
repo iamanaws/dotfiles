@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  flakeRoot,
+  ...
+}:
 
 {
   nix = {
@@ -26,7 +31,5 @@
     '';
   };
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "beekeeper-studio-5.4.9"
-  ];
+  nixpkgs.config.permittedInsecurePackages = import (flakeRoot + /lib/permittedInsecurePackages.nix);
 }

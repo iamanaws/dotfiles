@@ -61,59 +61,77 @@
     {
       self,
       nixpkgs,
-      nix-darwin,
       ...
     }@inputs:
     let
       inherit (self) outputs;
 
-      hosts = import ./hostnames.nix { inherit inputs; };
+      lib = nixpkgs.lib;
+
+      mkNixosHost = import ./lib/mkNixosHost.nix { inherit inputs outputs; };
+      mkDarwinHost = import ./lib/mkDarwinHost.nix { inherit inputs outputs; };
+      mkHomeConfigurations = import ./lib/mkHomeConfigurations.nix {
+        inherit
+          inputs
+          outputs
+          nixpkgs
+          lib
+          ;
+      };
+
+      nixosHosts = lib.attrNames (
+        lib.filterAttrs (_: v: v == "directory") (builtins.readDir ./nixos/hosts)
+      );
+
+      darwinHosts = lib.attrNames (
+        lib.filterAttrs (_: v: v == "directory") (builtins.readDir ./darwin/hosts)
+      );
 
       forAllSystems =
         f:
-        nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed (
+        lib.genAttrs lib.systems.flakeExposed (
           system:
           f {
             pkgs = import nixpkgs {
               inherit system;
-              config.allowUnfree = true;
+              config = {
+                allowUnfree = true;
+                permittedInsecurePackages = import ./lib/permittedInsecurePackages.nix;
+              };
             };
           }
         );
     in
     {
       formatter = forAllSystems ({ pkgs }: pkgs.nixfmt-tree);
-      packages = forAllSystems ({ pkgs }: import ./pkgs { inherit pkgs; });
+      packages = forAllSystems (
+        { pkgs }:
+        let
+          all = import ./pkgs { inherit pkgs; };
+        in
+        lib.filterAttrs (_: v: lib.isDerivation v && lib.meta.availableOn pkgs.stdenv.hostPlatform v) all
+      );
       overlays = import ./overlays { inherit inputs; };
 
       ### NixOS Configurations ###
-      nixosConfigurations = nixpkgs.lib.genAttrs (builtins.attrNames hosts.nixos) (
+      nixosConfigurations = lib.genAttrs nixosHosts (
         hostName:
-        let
-          host = hosts.nixos.${hostName};
-        in
-        nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs;
-            systemType = if host ? systemType then host.systemType else null;
-          };
-          modules = host.modules;
+        mkNixosHost {
+          name = hostName;
+          path = ./nixos/hosts/${hostName};
         }
       );
 
       ### Darwin Configurations ###
-      darwinConfigurations = nixpkgs.lib.genAttrs (builtins.attrNames hosts.darwin) (
+      darwinConfigurations = lib.genAttrs darwinHosts (
         hostName:
-        let
-          host = hosts.darwin.${hostName};
-        in
-        nix-darwin.lib.darwinSystem {
-          specialArgs = {
-            inherit inputs outputs;
-            systemType = if host ? systemType then host.systemType else "darwin";
-          };
-          modules = host.modules;
+        mkDarwinHost {
+          name = hostName;
+          path = ./darwin/hosts/${hostName};
         }
       );
+
+      ### Home-Manager standalone configurations ###
+      homeConfigurations = mkHomeConfigurations;
     };
 }

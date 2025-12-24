@@ -6,49 +6,17 @@
   lib,
   pkgs,
   systemType,
+  nixosModules,
   ...
 }:
 
 {
-  imports = [
-    ../../display/hyprland.nix
-  ];
+  # Reuse the shared display stack (pipewire, portals, fonts, etc.)
+  imports = [ nixosModules.display.default ];
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.caskaydia-cove
-    nerd-fonts.ubuntu-mono
-  ];
-
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
-  };
-
+  # pwnbox-specific GUI tools on top of the shared display module
   environment.systemPackages = with pkgs; [
-    brave
-    clapper
-    imv
     networkmanagerapplet
-    fuse
     vscode
-    rofi-wayland
-
-    hyprpaper
-    wl-clipboard
-    hyprpolkitagent
-    waybar
   ];
-
-  xdg.portal = {
-    enable = true;
-    config.common.default = "*";
-    # wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  };
-
-  security.polkit.enable = true;
 }

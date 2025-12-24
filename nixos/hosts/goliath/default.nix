@@ -5,51 +5,18 @@
   lib,
   pkgs,
   systemType,
+  nixosModules,
   ...
 }:
 
 {
-  imports = [
-    ./hardware.nix
-    ./options.nix
-    ../../roles/desktop
-    ../../programs/gnome.nix
-    ../../services/flatpak.nix
-    ../../services/hardened.nix
+  imports = with nixosModules; [
+    programs.gnome
+    services.flatpak
+    services.hardened
   ];
 
-  networking.hostName = "goliath";
   services.xserver.xkb.layout = "latam";
-
-  users.users = {
-    iamanaws = {
-      isNormalUser = true;
-      extraGroups = [
-        "wheel"
-        "input"
-      ];
-      packages = with pkgs; [
-        # gnome.gnome-software
-      ];
-    };
-
-    zsheen = {
-      isNormalUser = true;
-    };
-  };
-
-  home-manager = {
-    useUserPackages = true;
-
-    extraSpecialArgs = {
-      inherit inputs outputs systemType;
-      hostConfig = config;
-    };
-    users = {
-      iamanaws = import ../../../home/users/iamanaws/nixos;
-      zsheen = import ../../../home/users/zsheen;
-    };
-  };
 
   services.flatpak.packages = [
     "net.sourceforge.VMPK"
@@ -65,6 +32,7 @@
   environment.systemPackages = with pkgs; [
     egl-wayland
     libva-utils
+    libreoffice
   ];
 
   # Force intel-media-driver (iHD / i915) or nvidia
@@ -79,5 +47,4 @@
     # WLR_NO_HARDWARE_CURSORS = "1";
   };
 
-  system.stateVersion = "25.11";
 }

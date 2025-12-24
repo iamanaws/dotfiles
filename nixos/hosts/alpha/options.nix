@@ -1,8 +1,8 @@
 {
   device = {
-    system = "x86_64-linux";
-    hostname = "pwnbox";
-    profile = "vm/virtualbox";
+    system = "aarch64-linux";
+    hostname = "alpha";
+    profile = "server";
     users = [
       {
         name = "iamanaws";
@@ -10,10 +10,10 @@
           "wheel"
           "input"
         ];
-        homeManager.module = "nixos/pwnbox";
+        homeManager.enable = false;
       }
     ];
-    displayServer = "wayland";
+    displayServer = null;
     stateVersion = "25.11";
     timezone = "UTC";
     locale = "en_US.UTF-8";

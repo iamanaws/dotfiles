@@ -11,6 +11,10 @@
   ...
 }:
 
+let
+  flakeOverlays =
+    if outputs ? overlays then outputs.overlays else import ../../../overlays { inherit inputs; };
+in
 {
   # You can import other home-manager modules here
   imports = [ ];
@@ -18,8 +22,8 @@
   nixpkgs = {
     overlays = [
       # Add overlays your own flake exports (from overlays and pkgs dir):
-      outputs.overlays.additions
-      outputs.overlays.modifications
+      flakeOverlays.additions
+      flakeOverlays.modifications
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default

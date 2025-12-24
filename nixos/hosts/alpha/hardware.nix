@@ -20,6 +20,10 @@
     loader = {
       grub.enable = false;
       generic-extlinux-compatible.enable = true;
+
+      # override core defaults
+      systemd-boot.enable = lib.mkForce false;
+      efi.canTouchEfiVariables = lib.mkForce false;
     };
 
     extraModprobeConfig = ''
