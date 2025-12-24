@@ -3,11 +3,14 @@
 
 { pkgs }:
 
+let
+  callPackageDir = dir: pkgs.callPackage (dir + "/package.nix") { };
+in
 {
-  antu-icons = pkgs.callPackage ./antu-icon-theme/package.nix { };
-  beekeeper-studio = pkgs.callPackage ./beekeeper-studio/package.nix { };
-  dmenu-wpctl = pkgs.callPackage ./dmenu-wpctl/package.nix { };
-  dsnote = pkgs.callPackage ./dsnote/package.nix { };
-  genai-toolbox = pkgs.callPackage ./genai-toolbox/package.nix { };
-  kuyen-icons = pkgs.callPackage ./kuyen-icon-theme/package.nix { };
+  antu-icons = callPackageDir ./antu-icon-theme;
+  beekeeper-studio = callPackageDir ./beekeeper-studio;
+  dmenu-wpctl = callPackageDir ./dmenu-wpctl;
+  dsnote = callPackageDir ./dsnote;
+  genai-toolbox = callPackageDir ./genai-toolbox;
+  kuyen-icons = callPackageDir ./kuyen-icon-theme;
 }
