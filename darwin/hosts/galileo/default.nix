@@ -23,15 +23,13 @@
     outputs.overlays.modifications
   ];
 
-  # Enable alternative shell support in nix-darwin.
-  # programs.fish.enable = true;
-
   system.primaryUser = "iamanaws";
 
   fonts.packages = with pkgs.nerd-fonts; [ caskaydia-mono ];
 
   environment.systemPackages = with pkgs; [
     asciidoctor
+    brave
     cachix
     code-cursor
     colima
@@ -46,7 +44,6 @@
     # mongodb-atlas-cli
     # mongodb-cli
     ngrok
-    nsnake
     postman
     # spotify
     nodejs

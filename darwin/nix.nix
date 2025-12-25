@@ -1,13 +1,15 @@
 {
-  lib,
   config,
+  lib,
+  pkgs,
   flakeRoot,
   ...
 }:
 
 {
   nix = {
-    enable = false;
+    enable = true;
+    package = pkgs.lixPackageSets.stable.lix;
     settings = {
       experimental-features = [
         "nix-command"

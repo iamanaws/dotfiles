@@ -27,7 +27,6 @@
 
     casks = [
       # pending to migrate
-      "brave-browser"
       "google-chrome"
 
       # broken on nixpkgs

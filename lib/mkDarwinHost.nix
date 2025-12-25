@@ -64,7 +64,7 @@ let
         hostName = lib.mkDefault hostId;
       };
 
-      system.stateVersion = lib.mkDefault (deviceConfig.stateVersion or "5");
+      system.stateVersion = lib.mkDefault (deviceConfig.stateVersion or 6);
 
       users.users = lib.mkMerge (
         map (u: {
