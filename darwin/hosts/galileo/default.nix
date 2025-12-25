@@ -52,7 +52,7 @@
   ];
 
   system.defaults = {
-    controlcenter.WiFi = lib.mkForce true;
+    controlcenter.WiFi = lib.mkForce "show";
 
     dock = {
       autohide = true;

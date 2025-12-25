@@ -50,11 +50,11 @@
 
     controlcenter = {
       AccessibilityShortcuts = "hide";
-      AirDrop = false;
+      AirDrop = "hide";
       Battery = "menuBar";
       BatteryShowEnergyMode = "whenActive";
       BatteryShowPercentage = false;
-      Bluetooth = false;
+      Bluetooth = "hide";
       Display = "whenActive";
       FocusModes = "whenActive";
       Hearing = "hide";
@@ -63,9 +63,9 @@
       NowPlaying = "whenActive";
       ScreenMirroring = "whenActive";
       Sound = "whenActive";
-      StageManager = false;
+      StageManager = "hide";
       UserSwitcher = "hide";
-      WiFi = false;
+      WiFi = "hide";
     };
 
     Spotlight.MenuItemHidden = true;

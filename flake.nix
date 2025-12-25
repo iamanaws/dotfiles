@@ -30,7 +30,7 @@
     #### DARWIN ####
 
     nix-darwin = {
-      # url = "github:LnL7/nix-darwin";
+      # url = "github:nix-darwin/nix-darwin";
       url = "github:Iamanaws/nix-darwin/controlcenter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
