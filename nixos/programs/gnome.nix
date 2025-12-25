@@ -54,7 +54,9 @@
     gnome-music
     gnome-tour
     gnome-system-monitor
+    orca
     seahorse
     totem
+    yelp
   ];
 }

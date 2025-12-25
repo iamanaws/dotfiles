@@ -1,10 +1,20 @@
-{ lib, flakeRoot, ... }:
+{
+  inputs,
+  lib,
+  flakeRoot,
+  ...
+}:
 
 {
   nixpkgs.config.permittedInsecurePackages = import (flakeRoot + /lib/permittedInsecurePackages.nix);
 
   nix = {
     settings = {
+      auto-optimise-store = true;
+      builders-use-substitutes = true;
+      keep-outputs = true;
+      # bash-prompt = "";
+
       experimental-features = [
         "nix-command"
         "flakes"
@@ -40,4 +50,12 @@
       max-free = ${toString (1024 * 1024 * 1024)}
     '';
   };
+
+  environment.variables = {
+    # force builds to use nix daemon, also if user is root
+    NIX_REMOTE = "daemon";
+    # fix nixpkgs path for nix-shell -p
+    NIX_PATH = lib.mkForce "nixpkgs=${inputs.nixpkgs}";
+  };
+
 }

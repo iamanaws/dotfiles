@@ -13,7 +13,6 @@
   imports = [
     nixosModules.programs.nix
     nixosModules.programs.gnupg
-    # Import home-manager's NixOS module
     inputs.home-manager.nixosModules.home-manager
     inputs.disko.nixosModules.disko
   ];
@@ -26,7 +25,8 @@
 
       systemd-boot = {
         enable = lib.mkDefault true;
-        configurationLimit = lib.mkDefault 10;
+        configurationLimit = 10;
+        editor = false;
       };
     };
   };
@@ -71,9 +71,10 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed in system profile.
+  # environment.defaultPackages = lib.mkForce [ ];
   environment.systemPackages = with pkgs; [
+    # bat
     bottom
     busybox
     fet-sh
@@ -82,8 +83,8 @@
     git
     lshw
     neofetch
-    file
     neovim
+    # ripgrep
     sops
     tldr
     vim

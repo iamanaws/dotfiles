@@ -73,7 +73,7 @@ in
 
     settings = {
       user = {
-        name = "iamanaws";
+        name = "Angel J";
         email = "78835633+iamanaws@users.noreply.github.com";
       };
 

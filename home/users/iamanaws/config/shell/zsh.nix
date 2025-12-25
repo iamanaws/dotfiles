@@ -45,8 +45,6 @@
         # Directory trimming
         PROMPT_DIRTRIM=2
 
-        EDITOR=\"vim\"
-
         # Deny overwriting
         set -o noclobber
 
