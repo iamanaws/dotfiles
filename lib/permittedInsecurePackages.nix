@@ -1,3 +1,3 @@
 [
-  "beekeeper-studio-5.5.2"
+  "beekeeper-studio-5.5.3"
 ]
