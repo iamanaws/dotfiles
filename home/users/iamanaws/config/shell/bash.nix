@@ -11,6 +11,8 @@
     bashrcExtra = "\n
       # If not running interactively, don't do anything
       [[ $- != *i* ]] && return
+
+      export GPG_TTY=$(tty)
       
       parse_git_branch() {
         git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \\(.*\\)/ (\\1)/'

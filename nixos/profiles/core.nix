@@ -12,6 +12,7 @@
 {
   imports = [
     nixosModules.programs.nix
+    nixosModules.programs.gnupg
     # Import home-manager's NixOS module
     inputs.home-manager.nixosModules.home-manager
     inputs.disko.nixosModules.disko
@@ -83,6 +84,7 @@
     neofetch
     file
     neovim
+    sops
     tldr
     vim
   ];
@@ -96,14 +98,6 @@
     #   DefaultTimeoutStopSec=10s
     # '';
   };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
 
   # List services that you want to enable:
 

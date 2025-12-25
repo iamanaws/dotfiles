@@ -1,19 +1,10 @@
-{ inputs, ... }:
+{ ... }:
 
 {
-  imports = [
-    inputs.sops-nix.nixosModules.sops
-    ../.
-  ];
+  imports = [ ../. ];
 
-  sops = {
-    age.keyFile = "/home/iamanaws/.config/sops/age/keys.txt";
-
-    secrets = {
-      passwd = {
-        sopsFile = ./passwd;
-        format = "binary";
-      };
-    };
+  sops.secrets.passwd = {
+    sopsFile = ./passwd;
+    format = "binary";
   };
 }

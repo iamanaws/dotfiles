@@ -3,6 +3,7 @@
     system = "aarch64-darwin";
     hostname = "galileo";
     profile = "laptop";
+    openpgp.enable = true;
     users = [ "iamanaws" ];
     displayServer = null;
     stateVersion = "5";

@@ -13,6 +13,8 @@
 
 let
   secrets = flakeRoot + /secrets/daedalus;
+  hostUtils = import (flakeRoot + /lib/hostUtils.nix) { inherit lib; };
+  userKeys = hostUtils.collectSshKeys { inherit flakeRoot; };
 in
 
 {
@@ -27,9 +29,7 @@ in
   users.users = {
     iamanaws = {
       hashedPasswordFile = config.sops.secrets.passwd.path;
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOvjMCx6qhx8/wWEuALzeQ5PTX+0oq8o5Le0MAmvg97p iamanaws@archimedes"
-      ];
+      openssh.authorizedKeys.keys = [ userKeys.archimedes.iamanaws ];
     };
   };
 

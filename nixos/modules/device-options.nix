@@ -50,6 +50,12 @@ with lib;
                 description = "Extra packages to add to `users.users.<name>.packages` (host-local, NixOS only).";
               };
 
+              sshKey = mkOption {
+                type = types.str;
+                default = "";
+                description = "SSH public key for `openssh.authorizedKeys.keys`.";
+              };
+
               homeManager = {
                 enable = mkOption {
                   type = types.bool;
@@ -115,6 +121,14 @@ with lib;
       type = types.str;
       default = "en_US.UTF-8";
       description = "Default locale for the host.";
+    };
+
+    openpgp.enable = mkOption {
+      type = types.bool;
+      default = false;
+      description = ''
+        Enable OpenPGP smartcard support (GnuPG + hardware token tooling).
+      '';
     };
   };
 }

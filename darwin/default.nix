@@ -11,6 +11,7 @@
     inputs.home-manager.darwinModules.home-manager
     ./homebrew.nix
     ./nix.nix
+    ./programs/gnupg.nix
   ];
 
   power.sleep = {
@@ -100,6 +101,7 @@
     fet-sh
     neofetch
     neovim
+    sops
     zstd
   ];
 

@@ -13,6 +13,8 @@
 
 let
   secrets = flakeRoot + /secrets;
+  hostUtils = import (flakeRoot + /lib/hostUtils.nix) { inherit lib; };
+  userKeys = hostUtils.collectSshKeys { inherit flakeRoot; };
 in
 
 {
@@ -22,11 +24,7 @@ in
   ];
 
   users.users = {
-    iamanaws = {
-      openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOvjMCx6qhx8/wWEuALzeQ5PTX+0oq8o5Le0MAmvg97p iamanaws@archimedes"
-      ];
-    };
+    iamanaws.openssh.authorizedKeys.keys = [ userKeys.archimedes.iamanaws ];
   };
 
   environment.systemPackages = with pkgs; [

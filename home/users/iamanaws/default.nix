@@ -66,10 +66,15 @@ in
     enable = true;
     lfs.enable = true;
 
+    signing = {
+      signByDefault = true;
+      key = "CF10DCBB9318BE1D60404222272C61AB190DED28";
+    };
+
     settings = {
       user = {
         name = "iamanaws";
-        email = "iamanaws@users.noreply.github.com";
+        email = "78835633+iamanaws@users.noreply.github.com";
       };
 
       alias = {
@@ -102,6 +107,8 @@ in
       transfer.fsckobjects = true;
       fetch.fsckobjects = true;
       receive.fsckObjects = true;
+
+      gpg.format = "openpgp";
     };
 
     ignores = [

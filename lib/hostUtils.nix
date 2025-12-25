@@ -88,6 +88,7 @@ let
         name = u;
         groups = [ ];
         packages = [ ];
+        sshKey = "";
         homeManager = {
           enable = true;
           module = "auto";
@@ -98,12 +99,40 @@ let
         name = u.name;
         groups = u.groups or u.extraGroups or [ ];
         packages = u.packages or [ ];
+        sshKey = u.sshKey or "";
         homeManager =
           u.homeManager or {
             enable = true;
             module = "auto";
           };
       };
+
+  # Convert a user list into an attrset keyed by user name.
+  usersToAttrs =
+    users: lib.listToAttrs (map (u: lib.nameValuePair u.name u) (map normalizeUser users));
+
+  # Load normalized users for a given host (by name) from nixos/hosts/<host>/options.nix.
+  getHostUsers =
+    { flakeRoot, host }:
+    usersToAttrs ((loadDeviceConfig (flakeRoot + "/nixos/hosts/${host}")).users or [ ]);
+
+  # Collect all per-host per-user SSH keys:
+  # userKeys = hostUtils.collectSshKeys { inherit flakeRoot; };
+  # root.openssh.authorizedKeys.keys = with userKeys; [ archimedes.iamanaws goliath.iamanaws ];
+  collectSshKeys =
+    { flakeRoot }:
+    let
+      hostsDir = flakeRoot + "/nixos/hosts";
+      hosts = dirNames hostsDir;
+      mkHostKeys =
+        host:
+        lib.filterAttrs (_: k: k != "") (
+          lib.mapAttrs (_: u: u.sshKey) (getHostUsers {
+            inherit flakeRoot host;
+          })
+        );
+    in
+    lib.genAttrs hosts mkHostKeys;
 
   # Resolve a home-manager module path for a user.
   #
@@ -162,6 +191,9 @@ in
     loadHostDevices
     mkModuleTree
     normalizeUser
+    usersToAttrs
+    getHostUsers
+    collectSshKeys
     mkHmModulePath
     mkOutputsForHM
     ;
