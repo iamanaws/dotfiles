@@ -18,10 +18,12 @@ let
 in
 
 {
-  imports = with nixosModules; [
+  imports = [
     secrets
+  ]
+  ++ (with nixosModules; [
     programs.nix
-  ];
+  ]);
 
   users.users = {
     iamanaws.openssh.authorizedKeys.keys = [ userKeys.archimedes.iamanaws ];

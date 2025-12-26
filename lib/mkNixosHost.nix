@@ -68,6 +68,7 @@ let
         extraSpecialArgs = {
           inherit inputs;
           outputs = outputsForHM;
+          flakeRoot = inputs.self;
           systemType = deviceConfig.displayServer or null;
           hostConfig.device = deviceConfig;
         };

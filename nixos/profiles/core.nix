@@ -72,7 +72,7 @@
   # services.libinput.enable = true;
 
   # List packages installed in system profile.
-  # environment.defaultPackages = lib.mkForce [ ];
+  environment.defaultPackages = lib.mkForce [ ];
   environment.systemPackages = with pkgs; [
     # bat
     bottom
@@ -87,7 +87,6 @@
     # ripgrep
     sops
     tldr
-    vim
   ];
 
   services.fwupd.enable = true;

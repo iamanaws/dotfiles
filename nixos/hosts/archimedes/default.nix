@@ -15,12 +15,14 @@ let
 in
 
 {
-  imports = with nixosModules; [
+  imports = [
     secrets
+  ]
+  ++ (with nixosModules; [
     programs.lanzaboote
     services.hardened
     services.automount
-  ];
+  ]);
 
   environment.systemPackages = with pkgs; [
     # dsnote

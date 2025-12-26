@@ -18,12 +18,14 @@ let
 in
 
 {
-  imports = with nixosModules; [
+  imports = [
     secrets
+  ]
+  ++ (with nixosModules; [
     services.auto-upgrade
     programs.lanzaboote
     services.hardened
-  ];
+  ]);
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
   users.users = {

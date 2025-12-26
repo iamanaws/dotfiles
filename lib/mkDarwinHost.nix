@@ -76,6 +76,7 @@ let
         extraSpecialArgs = {
           inherit inputs;
           outputs = outputsForHM;
+          flakeRoot = inputs.self;
           systemType = "darwin";
           hostConfig.device = deviceConfig;
         };

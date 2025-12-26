@@ -22,7 +22,6 @@ in
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
-
     # Or modules exported from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModules.default
 
@@ -75,6 +74,13 @@ in
       user = {
         name = "Angel J";
         email = "78835633+iamanaws@users.noreply.github.com";
+      };
+
+      sendemail = {
+        smtpServer = "smtp.protonmail.ch";
+        smtpServerPort = 587;
+        smtpUser = "iamanaws@httpd.dev";
+        smtpEncryption = "tls";
       };
 
       alias = {
