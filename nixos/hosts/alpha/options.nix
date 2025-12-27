@@ -9,6 +9,7 @@
         groups = [
           "wheel"
           "input"
+          "networkmanager"
         ];
         homeManager.enable = false;
       }

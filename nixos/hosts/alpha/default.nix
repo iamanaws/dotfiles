@@ -46,6 +46,12 @@ in
     };
     # override core defaults
     networkmanager.enable = lib.mkForce false;
+    # Open firewall ports for DNS
+    firewall.allowedUDPPorts = [
+      53
+      67
+      68
+    ];
   };
 
   # Link /etc/wpa_supplicant.conf -> secret config
@@ -64,10 +70,7 @@ in
     timesyncd.enable = true;
   };
 
-  zramSwap = {
-    enable = true;
-    algorithm = "zstd";
-  };
+  zramSwap.enable = true;
 
   # Some packages (ahci fail... this bypasses that) https://discourse.nixos.org/t/does-pkgs-linuxpackages-rpi3-build-all-required-kernel-modules/42509
   nixpkgs.overlays = [
