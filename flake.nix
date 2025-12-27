@@ -31,7 +31,7 @@
 
     nix-darwin = {
       # url = "github:nix-darwin/nix-darwin";
-      url = "github:Iamanaws/nix-darwin/controlcenter";
+      url = "github:Iamanaws/nix-darwin/staging";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

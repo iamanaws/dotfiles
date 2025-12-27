@@ -88,6 +88,10 @@
     };
   };
 
+  # Enable MAS (Mac App Store) support
+  programs.mas.enable = true;
+  # programs.mas.packages = { };
+
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
     alt-tab-macos

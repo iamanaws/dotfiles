@@ -10,15 +10,6 @@
   };
 
   homebrew = {
-    # masApps = {
-    #   "Bitwarden" = 1352778147;
-    #   "Command X" = 6448461551;
-    #   "CopyClip" = 595191960;
-    #   "Plain Text Editor" = 1572202501;
-    #   "Pixea" = 1507782672;
-    #   "Xcode" = 497799835;
-    # };
-
     brews = [ "python3" ];
 
     casks = [

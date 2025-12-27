@@ -27,6 +27,16 @@
 
   fonts.packages = with pkgs.nerd-fonts; [ caskaydia-mono ];
 
+  programs.mas.packages = {
+    "Bitwarden" = 1352778147;
+    "Command X" = 6448461551;
+    "CopyClip" = 595191960;
+    "Plain Text Editor" = 1572202501;
+    "Pixea" = 1507782672;
+    # "Xcode" = 497799835;
+    "Grab2Text" = 6475956137;
+  };
+
   environment.systemPackages = with pkgs; [
     asciidoctor
     brave

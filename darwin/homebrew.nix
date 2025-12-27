@@ -43,17 +43,11 @@
       upgrade = true;
     };
 
-    masApps = {
+    masApps = { };
 
-    };
+    brews = [ ];
 
-    brews = [
-
-    ];
-
-    casks = [
-
-    ];
+    casks = [ ];
 
     # handle delcaratively by nix-homebrew
     taps = builtins.attrNames config.nix-homebrew.taps;
