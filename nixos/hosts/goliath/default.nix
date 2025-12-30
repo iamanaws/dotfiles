@@ -33,6 +33,7 @@
     egl-wayland
     libva-utils
     libreoffice
+    aseprite
   ];
 
   # Force intel-media-driver (iHD / i915) or nvidia

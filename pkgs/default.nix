@@ -13,4 +13,6 @@ in
   dsnote = callPackageDir ./dsnote;
   genai-toolbox = callPackageDir ./genai-toolbox;
   kuyen-icons = callPackageDir ./kuyen-icon-theme;
+  skia-aseprite = callPackageDir ./skia-aseprite;
+  aseprite = callPackageDir ./aseprite;
 }
