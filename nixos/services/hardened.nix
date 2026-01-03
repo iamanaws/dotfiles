@@ -9,18 +9,12 @@
 
 {
   imports = [
-    "${inputs.nix-mineral}/nix-mineral.nix"
+    inputs.nix-mineral.nixosModules.nix-mineral
   ];
 
   #usbguard
   boot = {
     kernelPackages = pkgs.linuxPackagesFor pkgs.linuxKernel.kernels.linux_hardened;
-
-    # Enable unprivileged user namespaces (kernel-level risk)
-    # for chromium based apps, flatpacks, and steam sandboxing
-    kernel.sysctl = lib.optionalAttrs (systemType != null) {
-      "kernel.unprivileged_userns_clone" = 1;
-    };
   };
 
   security.sudo.execWheelOnly = true;
@@ -35,47 +29,51 @@
 
   nix-mineral = {
     enable = true;
-    overrides = {
-      compatibility = {
-        # allow-unsigned-modules = true;
-        # allow-busmaster-bit = true;
-        # allow-ip-forward = true;
-        # no-lockdown = true;
+
+    settings = {
+      kernel = {
+        # cpu-mitigations = "smt-on"; # performance
+        # pti = false; # performance
+        sysrq = "sak";
       };
 
-      desktop = lib.optionalAttrs (systemType != null) {
-        # allow-multilib = true;
+      network = {
+        # ip-forwarding = true;
+      };
+
+      system = {
+        # multilib = true; # 32-bit
+        yama = "restricted";
+      };
+    };
+
+    extras = {
+      kernel = {
+        intelme-kmodules = false;
+      };
+
+      network = {
+        # bluetooth-kmodules = false;
+        #tcp-window-scaling = false;
+      };
+
+      misc = {
         # doas-sudo-wrapper = true;
-        # hideproc-ptraceable = true;
-        hideproc-off = true;
-        home-exec = true;
-        skip-restrict-home-permission = true;
-        nix-allow-all = true;
-        tmp-exec = true;
-        # usbguard-gnome-integration = true;
-        var-lib-exec = true;
+        # replace-sudo-with-doas = true;
+        # usbguard = {
+        #   enable = true;
+        #   gnome-integration = true;
+        # };
       };
 
-      performance = {
-        # allow-smt = true;
-        # iommu-passthrough = true;
-        # no-mitigations = true;
-        # no-pti = true;
-      };
-
-      security = {
-        # disable-bluetooth-kmodules = true;
-        # disable-intelme-kmodules = true;
-        # disable-amd-iommu-forced-isolation = true;
+      system = {
         # lock-root = true;
         minimize-swapping = true;
-        # sysrq-sak = true;
-      };
-
-      software-choice = {
-        # doas-no-sudo = true;
-        # no-firewall = true;
         secure-chrony = true;
+
+        # Enable unprivileged user namespaces (kernel-level risk)
+        # for chromium based apps, flatpacks, and steam sandboxing
+        unprivileged-userns = true;
       };
     };
   };
