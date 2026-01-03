@@ -12,9 +12,14 @@
     inputs.nix-mineral.nixosModules.nix-mineral
   ];
 
-  #usbguard
   boot = {
     kernelPackages = pkgs.linuxPackagesFor pkgs.linuxKernel.kernels.linux_hardened;
+
+    # Enable unprivileged user namespaces (kernel-level risk)
+    # for chromium based apps, flatpacks, and steam sandboxing
+    kernel.sysctl = lib.optionalAttrs (systemType != null) {
+      "kernel.unprivileged_userns_clone" = 1;
+    };
   };
 
   security.sudo.execWheelOnly = true;
@@ -29,50 +34,39 @@
 
   nix-mineral = {
     enable = true;
+    preset = "maximum";
+
+    filesystems.enable = false;
 
     settings = {
       kernel = {
         # cpu-mitigations = "smt-on"; # performance
         # pti = false; # performance
-        sysrq = "sak";
       };
 
-      network = {
-        # ip-forwarding = true;
-      };
-
-      system = {
-        # multilib = true; # 32-bit
-        yama = "restricted";
-      };
+      misc.nix-wheel = false;
+      system.nix-allow-only-wheel = false;
+      # network.ip-forwarding = true;
+      # system.multilib = true; # 32-bit
     };
 
     extras = {
-      kernel = {
-        intelme-kmodules = false;
-      };
-
       network = {
-        # bluetooth-kmodules = false;
-        #tcp-window-scaling = false;
+        bluetooth-kmodules = true;
+        tcp-window-scaling = true;
       };
 
       misc = {
-        # doas-sudo-wrapper = true;
-        # replace-sudo-with-doas = true;
-        # usbguard = {
-        #   enable = true;
-        #   gnome-integration = true;
-        # };
+        doas-sudo-wrapper = false;
+        replace-sudo-with-doas = false;
+        usbguard = {
+          enable = false;
+          # gnome-integration = true;
+        };
       };
 
       system = {
-        # lock-root = true;
-        minimize-swapping = true;
-        secure-chrony = true;
-
-        # Enable unprivileged user namespaces (kernel-level risk)
-        # for chromium based apps, flatpacks, and steam sandboxing
+        lock-root = false;
         unprivileged-userns = true;
       };
     };
@@ -85,7 +79,7 @@
       "aes256-ctr,aes192-ctr"
       "aes128-ctr"
       "aes128-gcm@openssh.com"
-      "chacha20-poly1305@openssh.com"
+      "chacha20-poly1305@openssh.com" # ?
     ];
     hostKeyAlgorithms = [
       "ssh-ed25519"
@@ -119,6 +113,7 @@
       };
     };
     macs = [
+      # "hmac-sha2-512" # ?
       "hmac-sha2-512-etm@openssh.com"
       "hmac-sha2-256-etm@openssh.com"
       "umac-128-etm@openssh.com"
