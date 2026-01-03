@@ -67,7 +67,7 @@ in
 
     signing = {
       signByDefault = true;
-      key = "CF10DCBB9318BE1D60404222272C61AB190DED28";
+      key = "C5EE9152B41B8B071A4A30AD33744241C7B86BCA";
     };
 
     settings = {

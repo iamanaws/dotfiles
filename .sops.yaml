@@ -5,7 +5,7 @@ keys:
   - &alpha age135jhww6q6e46h30k4vjt2f6vrtduqxccu9rw25tcv46cku9q95nsgh6yzk
   - &archimedes age1vk5urxzhnpzane2579frm8kwj2sd5g4e64pve0vmc35mz5z87a4q8s5fgg
   - &daedalus age1yex4qwcqx33ghuxcxew9zl3kmdn44ashsafdgmmly6arra48wcmsy0re2a
-  - &goliath age1ag7u5tesy4px04yadk0tpxqpylfxx2avjjtsg2ufx3qq56llrgjqh4eds4
+  - &goliath age1s2e5f6ayf33quexchwa75w5w6ss6jyxju38pjkwrwspefd2v8ezsh3c7l8
 creation_rules:
   # path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
   - path_regex: secrets/daedalus/.*

@@ -19,7 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-mineral.url = "github:cynicsketch/nix-mineral/26eec1303dea4f1f47b7e309b2cee766e7c735e2";
+    nix-mineral.url = "github:cynicsketch/nix-mineral/ff4583bdd48bcfc134ae129b473d2e8e9e24afc9";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-flatpak.url = "github:gmodena/nix-flatpak";

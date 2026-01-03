@@ -45,7 +45,6 @@
       };
 
       misc.nix-wheel = false;
-      system.nix-allow-only-wheel = false;
       # network.ip-forwarding = true;
       # system.multilib = true; # 32-bit
     };
