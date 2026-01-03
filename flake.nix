@@ -20,7 +20,7 @@
     };
 
     nix-mineral = {
-      url = "github:cynicsketch/nix-mineral";
+      url = "github:cynicsketch/nix-mineral/395384ceabc7f1b04dc32fa92654f3cc3294f330";
       flake = false;
     };
 

@@ -234,6 +234,7 @@
       "original": {
         "owner": "cynicsketch",
         "repo": "nix-mineral",
+        "rev": "395384ceabc7f1b04dc32fa92654f3cc3294f330",
         "type": "github"
       }
     },
