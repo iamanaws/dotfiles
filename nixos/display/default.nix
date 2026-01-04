@@ -13,6 +13,7 @@
 {
   imports = [
     nixosModules.programs.firefox
+    nixosModules.programs.cursor
   ]
   ++ lib.optional (systemType == "x11") nixosModules.display.qtile
   ++ lib.optional (systemType == "wayland") nixosModules.display.hyprland;
@@ -42,7 +43,6 @@
     [
       brave
       clapper
-      code-cursor
       imv
       # ghostty
       fuse
