@@ -11,11 +11,14 @@
 
 {
   imports = [
-    nixosModules.programs.nix
-    nixosModules.programs.gnupg
     inputs.home-manager.nixosModules.home-manager
     inputs.disko.nixosModules.disko
-  ];
+  ]
+  ++ (with nixosModules.programs; [
+    nix
+    neovim
+    gnupg
+  ]);
 
   boot = {
     initrd.systemd.enable = lib.mkDefault true;
@@ -83,7 +86,6 @@
     git
     lshw
     neofetch
-    neovim
     # ripgrep
     sops
     tldr
