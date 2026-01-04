@@ -14,5 +14,6 @@
     ./kitty.nix
     ./dunst
     ./hypr
+    ./cursor.nix
   ];
 }
