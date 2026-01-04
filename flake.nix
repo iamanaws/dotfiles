@@ -65,9 +65,9 @@
 
       lib = nixpkgs.lib;
 
-      mkNixosHost = import ./lib/mkNixosHost.nix { inherit inputs outputs; };
-      mkDarwinHost = import ./lib/mkDarwinHost.nix { inherit inputs outputs; };
-      mkHomeConfigurations = import ./lib/mkHomeConfigurations.nix {
+      mkNixos = import ./lib/mkNixos.nix { inherit inputs outputs; };
+      mkDarwin = import ./lib/mkDarwin.nix { inherit inputs outputs; };
+      mkHome = import ./lib/mkHome.nix {
         inherit
           inputs
           outputs
@@ -113,7 +113,7 @@
       ### NixOS Configurations ###
       nixosConfigurations = lib.genAttrs nixosHosts (
         hostName:
-        mkNixosHost {
+        mkNixos {
           name = hostName;
           path = ./nixos/hosts/${hostName};
         }
@@ -122,13 +122,13 @@
       ### Darwin Configurations ###
       darwinConfigurations = lib.genAttrs darwinHosts (
         hostName:
-        mkDarwinHost {
+        mkDarwin {
           name = hostName;
           path = ./darwin/hosts/${hostName};
         }
       );
 
       ### Home-Manager standalone configurations ###
-      homeConfigurations = mkHomeConfigurations;
+      homeConfigurations = mkHome;
     };
 }
