@@ -1,14 +1,15 @@
-{ config, ... }:
 {
-
   services.hyprpaper = {
     enable = true;
-
     settings = {
-      preload = [ "~/repos/dotfiles/media/shared/wallpapers/tor/privacy_is_a_human_right.png" ];
-
-      wallpaper = [ ",~/repos/dotfiles/media/shared/wallpapers/tor/privacy_is_a_human_right.png" ];
+      splash = false;
+      ipc = false;
+      wallpaper = [
+        {
+          monitor = "";
+          path = "~/repos/dotfiles/media/shared/wallpapers/tor/privacy_is_a_human_right.png";
+        }
+      ];
     };
   };
-
 }

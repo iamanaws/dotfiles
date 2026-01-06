@@ -9,10 +9,11 @@
     package = pkgs.neovim-unwrapped;
     withPython3 = false;
     withRuby = false;
-        
+    withNodeJs = false;
+
     defaultEditor = true;
     vimAlias = true;
-    viAlias = true;    
+    viAlias = true;
 
     configure = {
       customRC = ''
