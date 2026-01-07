@@ -114,6 +114,8 @@ let
       resolvedSystemType = firstNonNull null [
         (rawOverrides.systemType or null)
         systemType
+        (device.displayServer or null)
+        (if os == "darwin" then "darwin" else null)
       ];
 
       homeDir = firstNonNull (defaultHomeDirFor user os) [
