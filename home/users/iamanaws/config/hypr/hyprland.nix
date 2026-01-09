@@ -10,7 +10,6 @@
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
-    systemd.enable = false;
 
     settings = {
       debug = {
@@ -48,6 +47,9 @@
 
         "XCURSOR_SIZE,24"
         "GDK_SCALE,2"
+      ]
+      ++ lib.optionals (hostConfig.device.hostname == "goliath") [
+        "AQ_DRM_DEVICES,/dev/dri/dgpu1"
       ];
 
       ### LOOK AND FEEL ###
