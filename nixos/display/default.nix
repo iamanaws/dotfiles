@@ -77,12 +77,27 @@
     extraPortals =
       with pkgs;
       [
-        xdg-desktop-portal
         xdg-desktop-portal-gtk
       ]
       ++ lib.optionals (systemType == "wayland") [
         xdg-desktop-portal-hyprland
       ];
+
+    config = {
+      common = {
+        # Use xdg-desktop-portal-gtk for every interface unless otherwise specified
+        default = [ "gtk" ];
+      };
+      hyprland = {
+        # For Hyprland sessions, use the hyprland portal first, then gtk as a fallback
+        default = [
+          "hyprland"
+          "gtk"
+        ];
+        "org.freedesktop.portal.Settings" = [ "gtk" ];
+        "org.freedesktop.portal.FileChooser" = [ "gtk" ];
+      };
+    };
   };
 
   security.polkit.enable = true;

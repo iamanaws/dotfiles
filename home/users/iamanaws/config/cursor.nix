@@ -13,9 +13,7 @@
       userSettings = lib.mkMerge [
         {
           "editor.fontFamily" =
-            if systemType == "darwin"
-            then "'CaskaydiaMono Nerd Font', monospace"
-            else "'CaskaydiaCove NF'";
+            if systemType == "darwin" then "'CaskaydiaMono Nerd Font', monospace" else "'CaskaydiaCove NF'";
           "editor.tabSize" = 2;
           # "extensions.autoUpdate" = false;
           "files.autoSave" = "afterDelay";
