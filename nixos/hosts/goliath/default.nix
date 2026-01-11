@@ -34,6 +34,7 @@
     libva-utils
     libreoffice
     aseprite
+    cobblemon
   ];
 
   # Force intel-media-driver (iHD / i915) or nvidia

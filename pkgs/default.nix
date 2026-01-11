@@ -14,6 +14,4 @@ in
   dsnote = callPackageDir ./dsnote;
   genai-toolbox = callPackageDir ./genai-toolbox;
 }
-// pkgs.lib.optionalAttrs (endernix != null) (
-  pkgs.callPackage ./minecraft/package.nix { inherit endernix; }
-)
+// (if endernix != null then import ./minecraft/package.nix { inherit pkgs endernix; } else { })
