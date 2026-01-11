@@ -1,7 +1,10 @@
 # Custom packages
 # build using 'nix build .#example-package'
 
-{ pkgs }:
+{
+  pkgs,
+  endernix ? null,
+}:
 
 let
   callPackageDir = dir: pkgs.callPackage (dir + "/package.nix") { };
@@ -11,3 +14,6 @@ in
   dsnote = callPackageDir ./dsnote;
   genai-toolbox = callPackageDir ./genai-toolbox;
 }
+// pkgs.lib.optionalAttrs (endernix != null) (
+  pkgs.callPackage ./minecraft/package.nix { inherit endernix; }
+)

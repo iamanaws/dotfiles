@@ -52,6 +52,9 @@
     # Shameless plug: looking for a way to nixify your themes and make
     # nix-colors.url = "github:misterio77/nix-colors";
     sops-nix.url = "github:Mic92/sops-nix";
+
+    #### Minecraft ####
+    endernix.url = "github:iamanaws/endernix";
   };
 
   outputs =
@@ -104,7 +107,10 @@
       packages = forAllSystems (
         { pkgs }:
         let
-          all = import ./pkgs { inherit pkgs; };
+          endernix = inputs.endernix;
+          all = import ./pkgs { inherit pkgs endernix; } // {
+            inherit (endernix.packages.${pkgs.stdenv.hostPlatform.system}) update-mods;
+          };
         in
         lib.filterAttrs (_: v: lib.isDerivation v && lib.meta.availableOn pkgs.stdenv.hostPlatform v) all
       );
