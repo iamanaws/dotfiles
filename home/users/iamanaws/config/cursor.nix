@@ -36,6 +36,7 @@
         foxundermoon.shell-format
         jnoortheen.nix-ide
         mechatroner.rainbow-csv
+        ms-pyright.pyright
         ms-python.python
         oderwat.indent-rainbow
         pkief.material-icon-theme
@@ -45,8 +46,6 @@
         redhat.vscode-yaml
         vue.volar
 
-        #anysphere.cursorpyright
-        #dsznajder.es7-react-js-snippets
         #miguelsolorio.fluent-icons
         #nomicfoundation.hardhat-solidity
       ];
