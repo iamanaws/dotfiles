@@ -18,7 +18,8 @@
     # Enable unprivileged user namespaces (kernel-level risk)
     # for chromium based apps, flatpacks, and steam sandboxing
     kernel.sysctl = lib.optionalAttrs (systemType != null) {
-      "kernel.unprivileged_userns_clone" = 1;
+      "kernel.unprivileged_userns_clone" = lib.mkForce 1;
+      # "kernel.yama.ptrace_scope" = lib.mkOverride 10 1;
     };
   };
 
@@ -47,6 +48,8 @@
       misc.nix-wheel = false;
       # network.ip-forwarding = true;
       # system.multilib = true; # 32-bit
+      # system.proc-mem-force = "ptrace";
+      system.yama = "relaxed";
     };
 
     extras = {
