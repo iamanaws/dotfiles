@@ -9,18 +9,27 @@ jobs:
   nix-flake-update:
     permissions:
       contents: write
-      id-token: write
-      issues: write
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: DeterminateSystems/nix-installer-action@main
-      - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: DeterminateSystems/update-flake-lock@main
+      - uses: cachix/install-nix-action@v31
+      - name: update flake.lock
+        run: |
+          nix --version
+          nix flake update
+      - name: create pull request
         id: update-flake
+        uses: peter-evans/create-pull-request@v8
         with:
-          pr-title: "flake.lock: update"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          commit-message: "flake.lock: update"
+          title: "flake.lock: update"
+          body: "Automated flake.lock update."
+          branch: "automation/flake-lock-update"
+          delete-branch: true
       - name: auto-merge PR
         if: steps.update-flake.outputs.pull-request-number != ''
         env:
