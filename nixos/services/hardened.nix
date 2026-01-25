@@ -35,7 +35,7 @@
 
   nix-mineral = {
     enable = true;
-    preset = "maximum";
+    preset = [ "maximum" ];
 
     filesystems.enable = false;
 
