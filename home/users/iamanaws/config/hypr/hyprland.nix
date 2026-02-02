@@ -331,18 +331,15 @@
       ### WORKSPACE RULES ###
       workspace = lib.optional (hostConfig.device.hostname == "goliath") "1, monitor:DP-3";
 
-      # Example windowrule v1
-      # windowrule = "float, ^(kitty)$";
+      # Example windowrule
+      # windowrule = "float,class:^(kitty)$,title:^(kitty)$";
 
-      # Example windowrule v2
-      # windowrulev2 = "float,class:^(kitty)$,title:^(kitty)$";
-
-      windowrulev2 = [
-        # Ignore maximize requests from apps. You'll probably like this.
-        "suppressevent maximize, class:.*"
+      windowrule = [
+        # Ignore maximize requests from apps
+        "suppress_event maximize, match:class .*"
 
         # Fix some dragging issues with XWayland
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+        "no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0"
       ];
 
     };
