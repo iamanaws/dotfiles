@@ -30,10 +30,11 @@
   ];
 
   environment.systemPackages = with pkgs; [
+    aseprite
     egl-wayland
     libva-utils
     libreoffice
-    aseprite
+    rapidraw
     cobblemon
   ];
 
