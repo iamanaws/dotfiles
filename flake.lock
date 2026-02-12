@@ -323,11 +323,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766889323,
-        "narHash": "sha256-kir+HzANc1z2Ls4Bo6iLp3nEHlhdgudSiY9hZd2j0m4=",
+        "lastModified": 1770862174,
+        "narHash": "sha256-KNAiPLlIVlZ7Ug7eIHrqVVp3BYipuIWqzArLJADYXSE=",
         "owner": "Iamanaws",
         "repo": "nix-darwin",
-        "rev": "7854d4fa7f53dabdb060d17a06666e1cc1114aa8",
+        "rev": "b53a28c9e49a54a6bd9285bf8becae50473e4000",
         "type": "github"
       },
       "original": {

@@ -89,7 +89,10 @@
   };
 
   # Enable MAS (Mac App Store) support
-  programs.mas.enable = true;
+  programs.mas = {
+    enable = true;
+    cleanup = true;
+  };
   # programs.mas.packages = { };
 
   # List packages installed in system profile.
