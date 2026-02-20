@@ -94,8 +94,8 @@
           "hyprland"
           "gtk"
         ];
-        "org.freedesktop.portal.Settings" = [ "gtk" ];
-        "org.freedesktop.portal.FileChooser" = [ "gtk" ];
+        "org.freedesktop.impl.portal.Settings" = [ "gtk" ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
       };
     };
   };

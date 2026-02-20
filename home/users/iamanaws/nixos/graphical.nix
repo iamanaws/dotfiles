@@ -53,12 +53,37 @@ lib.optionalAttrs (systemType != null) {
 
   # mimeApps - find / -name '*.desktop'
   xdg = {
+    portal = {
+      enable = true;
+      extraPortals =
+        with pkgs;
+        [
+          xdg-desktop-portal-gtk
+        ]
+        ++ lib.optionals (systemType == "wayland") [
+          xdg-desktop-portal-hyprland
+        ];
+
+      config = {
+        common = {
+          default = [ "gtk" ];
+        };
+        hyprland = {
+          default = [ "hyprland" "gtk" ];
+          "org.freedesktop.impl.portal.FileChooser" = "gtk";
+          "org.freedesktop.impl.portal.Print" = "gtk";
+        };
+      };
+    };
+
     mimeApps = {
       enable = true;
       defaultApplications = {
         "application/octet-stream" = [ "re.rizin.cutter.desktop" ];
         "application/pdf" = [ "cursor.desktop" ];
         "application/json" = [ "cursor.desktop" ];
+
+        "inode/directory" = [ "thunar.desktop" ];
 
         "image/*" = [ "imv.desktop" ];
         "image/gif" = [ "imv.desktop" ];
