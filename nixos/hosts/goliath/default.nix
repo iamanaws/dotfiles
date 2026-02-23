@@ -35,6 +35,7 @@
     libva-utils
     libreoffice
     rapidraw
+    reaper
     cobblemon
   ];
 

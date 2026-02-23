@@ -46,10 +46,11 @@
         "HYPRCURSOR_SIZE,24"
 
         "XCURSOR_SIZE,24"
-        "GDK_SCALE,2"
       ]
       ++ lib.optionals (hostConfig.device.hostname == "goliath") [
         "AQ_DRM_DEVICES,/dev/dri/dgpu1"
+      ] ++ lib.optionals (hostConfig.device.hostname == "archimedes") [
+        "GDK_SCALE,2"
       ];
 
       ### LOOK AND FEEL ###
