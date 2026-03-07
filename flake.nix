@@ -19,7 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-mineral.url = "github:cynicsketch/nix-mineral/47ffa0f27b7ee8847a39092bf23334deeb80536e";
+    nix-mineral.url = "github:cynicsketch/nix-mineral/bc853fa1d5dbe4122aac3952804c493eb5ffe9a1";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -28,7 +28,7 @@
 
     nix-darwin = {
       # url = "github:nix-darwin/nix-darwin";
-      url = "github:Iamanaws/nix-darwin/staging";
+      url = "github:iamanaws/nix-darwin/staging";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

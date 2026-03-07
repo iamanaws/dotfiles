@@ -49,7 +49,7 @@
 
       misc.nix-wheel = false;
       # network.ip-forwarding = true;
-      # system.multilib = true; # 32-bit
+      system.multilib = true; # 32-bit
       # system.proc-mem-force = "ptrace";
       system.yama = "relaxed";
     };

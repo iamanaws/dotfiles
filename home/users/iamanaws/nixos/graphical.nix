@@ -20,7 +20,7 @@ lib.optionalAttrs (systemType != null) {
   services.flatpak.packages = lib.optionals (hostConfig.device.hostname == "goliath") [
     rec {
       appId = "com.hypixel.HytaleLauncher";
-      sha256 = "sha256-GGwBh/Ax7uiJ83dbHMShOiJGjHQgcD4eiicn/6S9olc=";
+      sha256 = "sha256-pMZyFtwlGTvCcClvK/dr42+Kvv6ZPhRCgH3iGTgxxHI=";
       bundle = "${pkgs.fetchurl {
         url = "https://launcher.hytale.com/builds/release/linux/amd64/hytale-launcher-latest.flatpak";
         inherit sha256;

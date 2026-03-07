@@ -85,7 +85,6 @@
     fwupd
     git
     lshw
-    neofetch
     # ripgrep
     sops
     tldr
