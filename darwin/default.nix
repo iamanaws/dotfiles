@@ -106,7 +106,6 @@
 
     bottom
     fet-sh
-    neofetch
     neovim
     sops
     zstd
