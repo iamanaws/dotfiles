@@ -16,7 +16,10 @@
         "flakes"
       ];
       trusted-users = [ "@admin" ];
-      extra-platforms = [ "x86_64-darwin" "aarch64-darwin" ];
+      extra-platforms = [
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
     };
 
     optimise.automatic = config.nix.enable;

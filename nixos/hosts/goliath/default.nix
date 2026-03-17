@@ -36,7 +36,6 @@
     libreoffice
     rapidraw
     reaper
-    cobblemon
   ];
 
   # Force intel-media-driver (iHD / i915) or nvidia

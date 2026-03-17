@@ -6,7 +6,6 @@
     final: _prev:
     import ../pkgs {
       pkgs = final;
-      endernix = inputs.endernix or null;
     };
 
   # This one contains whatever you want to overlay

@@ -3,7 +3,6 @@
 
 {
   pkgs,
-  endernix ? null,
 }:
 
 let
@@ -14,4 +13,3 @@ in
   dsnote = callPackageDir ./dsnote;
   genai-toolbox = callPackageDir ./genai-toolbox;
 }
-// (if endernix != null then import ./minecraft/package.nix { inherit pkgs endernix; } else { })

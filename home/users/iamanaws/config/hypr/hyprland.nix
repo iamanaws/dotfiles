@@ -49,7 +49,8 @@
       ]
       ++ lib.optionals (hostConfig.device.hostname == "goliath") [
         "AQ_DRM_DEVICES,/dev/dri/dgpu1"
-      ] ++ lib.optionals (hostConfig.device.hostname == "archimedes") [
+      ]
+      ++ lib.optionals (hostConfig.device.hostname == "archimedes") [
         "GDK_SCALE,2"
       ];
 
