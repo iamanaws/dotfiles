@@ -23,6 +23,9 @@
           "workbench.colorTheme" = "Tokyo Night Storm";
           "workbench.iconTheme" = "material-icon-theme";
           "workbench.productIconTheme" = "fluent-icons";
+          "[vue]" = {
+            "editor.defaultFormatter" = "Vue.volar";
+          };
         }
         (lib.optionalAttrs (systemType == "darwin") {
           "editor.fontSize" = 14;
