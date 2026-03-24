@@ -94,15 +94,15 @@ with lib;
         '';
       };
 
-    displayServer = mkOption {
+    compositors = mkOption {
       type =
         with types;
-        nullOr (enum [
-          "wayland"
-          "x11"
+        listOf (enum [
+          "gnome"
+          "hyprland"
         ]);
-      default = null;
-      description = "Display server preference (wayland, x11, or null/headless).";
+      default = [ ];
+      description = "Optional Linux graphical sessions to enable for this host.";
     };
 
     stateVersion = mkOption {

@@ -2,12 +2,11 @@
   config,
   lib,
   pkgs,
-  systemType,
+  hostConfig,
   ...
 }:
-
 {
-  config = lib.optionalAttrs (systemType != null) {
+  config = lib.optionalAttrs hostConfig.isGraphical {
     programs.brave = {
       enable = true;
       extensions = [

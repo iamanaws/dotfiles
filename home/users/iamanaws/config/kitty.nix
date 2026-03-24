@@ -2,19 +2,12 @@
   config,
   lib,
   pkgs,
-  systemType,
+  hostConfig,
   ...
 }:
-
 {
   programs.kitty =
-    lib.optionalAttrs
-      (
-        !(lib.elem systemType [
-          null
-          "darwin"
-        ])
-      )
+    lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux)
       {
         enable = true;
         font = {

@@ -2,10 +2,9 @@
   config,
   lib,
   pkgs,
-  systemType,
+  hostConfig,
   ...
 }:
-
 let
   dunst-scripts = pkgs.symlinkJoin {
     name = "dunst-scripts";
@@ -30,13 +29,7 @@ let
 in
 {
   config =
-    lib.optionalAttrs
-      (
-        !(lib.elem systemType [
-          null
-          "darwin"
-        ])
-      )
+    lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux)
       {
         home.packages = with pkgs; [ dunst-scripts ];
 

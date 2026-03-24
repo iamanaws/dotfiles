@@ -1,12 +1,11 @@
 {
   inputs,
   config,
+  hostConfig,
   lib,
   pkgs,
-  systemType,
   ...
 }:
-
 {
   imports = [
     inputs.nix-mineral.nixosModules.nix-mineral
@@ -17,7 +16,7 @@
 
     # Enable unprivileged user namespaces (kernel-level risk)
     # for chromium based apps, flatpacks, and steam sandboxing
-    kernel.sysctl = lib.optionalAttrs (systemType != null) {
+    kernel.sysctl = lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
       "kernel.unprivileged_userns_clone" = lib.mkForce 1;
       # "kernel.yama.ptrace_scope" = lib.mkOverride 10 1;
     };

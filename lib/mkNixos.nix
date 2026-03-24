@@ -33,6 +33,7 @@ let
       null;
 
   userSpecs = map hostUtils.normalizeUser (deviceConfig.users or [ ]);
+  hostConfig = { device = deviceConfig; } // hostUtils.mkHostContext deviceConfig;
 
   hmModuleFor =
     user: mode:
@@ -69,8 +70,7 @@ let
           inherit inputs;
           outputs = outputsForHM;
           flakeRoot = inputs.self;
-          systemType = deviceConfig.displayServer or null;
-          hostConfig.device = deviceConfig;
+          inherit hostConfig;
         };
         users = lib.mkMerge (
           lib.filter (x: x != { }) (
@@ -101,12 +101,11 @@ inputs.nixpkgs.lib.nixosSystem {
   specialArgs = {
     inherit inputs;
     outputs = outputsForHM;
-    systemType = deviceConfig.displayServer or null;
     flakeRoot = inputs.self;
     nixosRoot = inputs.self + /nixos;
     homeRoot = inputs.self + /home;
     inherit homeUsersRoot;
-    hostConfig.device = deviceConfig;
+    inherit hostConfig;
     nixosModules = hostUtils.mkModuleTree (inputs.self + /nixos);
   }
   // specialArgs;

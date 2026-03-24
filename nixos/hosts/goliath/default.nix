@@ -4,14 +4,12 @@
   config,
   lib,
   pkgs,
-  systemType,
   nixosModules,
   ...
 }:
 
 {
   imports = with nixosModules; [
-    programs.gnome
     services.flatpak
     services.hardened
   ];

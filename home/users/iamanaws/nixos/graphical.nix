@@ -2,12 +2,10 @@
   config,
   lib,
   pkgs,
-  systemType,
   hostConfig,
   ...
 }:
-
-lib.optionalAttrs (systemType != null) {
+lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
   imports = [ ../../../shared/services/flatpak.nix ];
 
   home.packages = with pkgs; [
@@ -60,7 +58,7 @@ lib.optionalAttrs (systemType != null) {
         [
           xdg-desktop-portal-gtk
         ]
-        ++ lib.optionals (systemType == "wayland") [
+        ++ lib.optionals hostConfig.hyprland [
           xdg-desktop-portal-hyprland
         ];
 
@@ -68,6 +66,8 @@ lib.optionalAttrs (systemType != null) {
         common = {
           default = [ "gtk" ];
         };
+      }
+      // lib.optionalAttrs hostConfig.hyprland {
         hyprland = {
           default = [
             "hyprland"

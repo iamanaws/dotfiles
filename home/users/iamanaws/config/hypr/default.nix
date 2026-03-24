@@ -3,12 +3,10 @@
   config,
   lib,
   pkgs,
-  systemType,
   hostConfig,
   ...
 }:
-
-lib.optionalAttrs (systemType == "wayland") {
+lib.optionalAttrs hostConfig.hyprland {
   imports = [
     ./hypridle.nix
     ./hyprland.nix

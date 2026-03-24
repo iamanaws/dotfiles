@@ -1,19 +1,18 @@
 {
   lib,
   pkgs,
-  systemType,
+  hostConfig,
   ...
 }:
-
 {
-  programs.vscode = lib.optionalAttrs (systemType != null) {
+  programs.vscode = lib.optionalAttrs hostConfig.isGraphical {
     enable = true;
     package = pkgs.code-cursor;
     profiles.default = {
       userSettings = lib.mkMerge [
         {
           "editor.fontFamily" =
-            if systemType == "darwin" then "'CaskaydiaMono Nerd Font', monospace" else "'CaskaydiaCove NF'";
+            if hostConfig.isDarwin then "'CaskaydiaMono Nerd Font', monospace" else "'CaskaydiaCove NF'";
           "editor.tabSize" = 2;
           # "extensions.autoUpdate" = false;
           "files.autoSave" = "afterDelay";
@@ -27,7 +26,7 @@
             "editor.defaultFormatter" = "Vue.volar";
           };
         }
-        (lib.optionalAttrs (systemType == "darwin") {
+        (lib.optionalAttrs hostConfig.isDarwin {
           "editor.fontSize" = 14;
           "terminal.integrated.fontSize" = 14;
         })

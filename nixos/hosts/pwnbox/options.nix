@@ -13,7 +13,7 @@
         homeManager.module = "nixos/pwnbox";
       }
     ];
-    displayServer = "wayland";
+    compositors = [ "hyprland" ];
     stateVersion = "25.11";
     timezone = "UTC";
     locale = "en_US.UTF-8";

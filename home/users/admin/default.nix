@@ -6,7 +6,6 @@
   lib,
   config,
   pkgs,
-  systemType,
   hostConfig,
   ...
 }:

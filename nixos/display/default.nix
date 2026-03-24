@@ -3,19 +3,18 @@
   inputs,
   outputs,
   config,
+  hostConfig,
   lib,
   pkgs,
-  systemType,
   nixosModules,
   ...
 }:
-
 {
   imports = [
     nixosModules.programs.firefox
   ]
-  ++ lib.optional (systemType == "x11") nixosModules.display.qtile
-  ++ lib.optional (systemType == "wayland") nixosModules.display.hyprland;
+  ++ lib.optional hostConfig.hyprland nixosModules.display.hyprland
+  ++ lib.optional hostConfig.gnome nixosModules.programs.gnome;
 
   fonts.packages = with pkgs; [
     nerd-fonts.caskaydia-cove
@@ -55,11 +54,7 @@
       rofi-bluetooth
       networkmanager_dmenu
     ]
-    ++ lib.optionals (systemType == "x11") [
-      flameshot
-      nitrogen
-    ]
-    ++ lib.optionals (systemType == "wayland") [
+    ++ lib.optionals hostConfig.hyprland [
       grim
       slurp
       hyprpaper
@@ -79,7 +74,7 @@
       [
         xdg-desktop-portal-gtk
       ]
-      ++ lib.optionals (systemType == "wayland") [
+      ++ lib.optionals hostConfig.hyprland [
         xdg-desktop-portal-hyprland
       ];
 
@@ -88,6 +83,8 @@
         # Use xdg-desktop-portal-gtk for every interface unless otherwise specified
         default = [ "gtk" ];
       };
+    }
+    // lib.optionalAttrs hostConfig.hyprland {
       hyprland = {
         # For Hyprland sessions, use the hyprland portal first, then gtk as a fallback
         default = [

@@ -13,7 +13,6 @@
         ];
       }
     ];
-    displayServer = null;
     stateVersion = "25.05";
     timezone = "America/Tijuana";
     locale = "en_US.UTF-8";

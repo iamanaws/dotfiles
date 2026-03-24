@@ -89,7 +89,6 @@ let
       system,
       device ? { },
       homeDirectory ? null,
-      systemType ? null,
       name ? null,
     }:
     let
@@ -111,13 +110,6 @@ let
       # per-host options overrides
       rawOverrides = { };
 
-      resolvedSystemType = firstNonNull null [
-        (rawOverrides.systemType or null)
-        systemType
-        (device.displayServer or null)
-        (if os == "darwin" then "darwin" else null)
-      ];
-
       homeDir = firstNonNull (defaultHomeDirFor user os) [
         (rawOverrides.homeDirectory or null)
         homeDirectory
@@ -132,10 +124,14 @@ let
         // {
           hostname = candidate.hostname or null;
           system = candidate.system or system;
-          displayServer = candidate.displayServer or resolvedSystemType;
         };
 
-      hostConfig = rawOverrides.hostConfig or { device = hostDevice; };
+      hostConfig =
+        (rawOverrides.hostConfig or { })
+        // (hostUtils.mkHostContext hostDevice)
+        // {
+          device = hostDevice;
+        };
     in
     lib.optionalAttrs (modulePath != null) {
       ${if name != null then name else "${user}-${system}"} =
@@ -152,7 +148,6 @@ let
             ];
             extraSpecialArgs = {
               inherit inputs hostConfig;
-              systemType = resolvedSystemType;
               inherit flakeRoot;
             }
             // lib.optionalAttrs (outputs != null) { inherit outputs; };
@@ -248,7 +243,6 @@ let
             device = (hostOverrides.device or device) // {
               hostname = host;
             };
-            systemType = hostOverrides.systemType or device.displayServer or null;
             homeDirectory = hostOverrides.homeDirectory or (defaultHomeDirFor user os);
             name = "${user}@${host}";
           }

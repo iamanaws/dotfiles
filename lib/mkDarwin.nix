@@ -15,6 +15,7 @@ let
   outputsForHM = hostUtils.mkOutputsForHM { inherit outputs inputs; };
 
   userSpecs = map hostUtils.normalizeUser (deviceConfig.users or [ ]);
+  hostConfig = { device = deviceConfig; } // hostUtils.mkHostContext deviceConfig;
 
   hmModuleFor =
     user: mode:
@@ -77,8 +78,7 @@ let
           inherit inputs;
           outputs = outputsForHM;
           flakeRoot = inputs.self;
-          systemType = "darwin";
-          hostConfig.device = deviceConfig;
+          inherit hostConfig;
         };
         users = lib.mkMerge (
           lib.filter (x: x != { }) (
@@ -105,10 +105,10 @@ inputs.nix-darwin.lib.darwinSystem {
   specialArgs = {
     inherit inputs darwinModules homeUsersRoot;
     outputs = outputsForHM;
-    systemType = "darwin";
     flakeRoot = inputs.self;
     darwinRoot = inputs.self + /darwin;
     homeRoot = inputs.self + /home;
+    inherit hostConfig;
     nixosModules = hostUtils.mkModuleTree (inputs.self + /nixos);
   }
   // specialArgs;

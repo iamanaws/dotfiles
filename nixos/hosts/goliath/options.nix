@@ -14,7 +14,10 @@
       }
       "zsheen"
     ];
-    displayServer = "wayland";
+    compositors = [
+      "gnome"
+      "hyprland"
+    ];
     stateVersion = "25.11";
     timezone = "America/Tijuana";
     locale = "en_US.UTF-8";

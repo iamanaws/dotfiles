@@ -183,6 +183,21 @@ let
     in
     outputs // { overlays = outputs.overlays or flakeOverlays; };
 
+  mkHostContext =
+    device:
+    let
+      system = device.system or "";
+      compositors = device.compositors or [ ];
+      isDarwin = lib.hasSuffix "darwin" system;
+      isLinux = lib.hasSuffix "linux" system;
+    in
+    {
+      inherit compositors isDarwin isLinux;
+      isGraphical = isDarwin || (isLinux && compositors != [ ]);
+      hyprland = lib.elem "hyprland" compositors;
+      gnome = lib.elem "gnome" compositors;
+    };
+
 in
 {
   inherit
@@ -196,5 +211,6 @@ in
     collectSshKeys
     mkHmModulePath
     mkOutputsForHM
+    mkHostContext
     ;
 }

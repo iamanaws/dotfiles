@@ -14,7 +14,6 @@
         homeManager.enable = false;
       }
     ];
-    displayServer = null;
     stateVersion = "25.11";
     timezone = "UTC";
     locale = "en_US.UTF-8";
