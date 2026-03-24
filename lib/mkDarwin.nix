@@ -15,7 +15,10 @@ let
   outputsForHM = hostUtils.mkOutputsForHM { inherit outputs inputs; };
 
   userSpecs = map hostUtils.normalizeUser (deviceConfig.users or [ ]);
-  hostConfig = { device = deviceConfig; } // hostUtils.mkHostContext deviceConfig;
+  hostConfig = {
+    device = deviceConfig;
+  }
+  // hostUtils.mkHostContext deviceConfig;
 
   hmModuleFor =
     user: mode:

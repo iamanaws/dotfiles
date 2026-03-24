@@ -66,6 +66,7 @@ in
 
     signing = {
       signByDefault = true;
+      format = "openpgp";
       key = "C5EE9152B41B8B071A4A30AD33744241C7B86BCA";
     };
 
@@ -131,5 +132,5 @@ in
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "24.05";
+  home.stateVersion = "25.05";
 }
