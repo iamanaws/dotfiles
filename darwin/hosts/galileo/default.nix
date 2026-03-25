@@ -50,8 +50,8 @@
     jujutsu
     libreoffice-bin
     mongodb-compass
-    # mongodb-atlas-cli
-    # mongodb-cli
+    mongodb-atlas-cli
+    mongodb-cli
     ngrok
     postman
     # spotify

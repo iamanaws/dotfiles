@@ -60,6 +60,18 @@ in
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
+
+  programs.claude-code = {
+    enable = hostConfig.device.hostname == "galileo";
+    skills = { };
+    settings = {
+      includeCoAuthoredBy = false;
+      permissions = {
+        allow = [ ];
+      };
+    };
+  };
+
   programs.git = {
     enable = true;
     lfs.enable = true;

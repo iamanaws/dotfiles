@@ -25,6 +25,7 @@
 
       # not available on nixpkgs darwin
       "clickup"
+      "t3-code" # https://github.com/NixOS/nixpkgs/pull/497465
       # "logi-options+"
     ];
   };
