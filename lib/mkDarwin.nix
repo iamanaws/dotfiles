@@ -77,6 +77,7 @@ let
       );
 
       home-manager = {
+        backupFileExtension = "bak";
         extraSpecialArgs = {
           inherit inputs;
           outputs = outputsForHM;

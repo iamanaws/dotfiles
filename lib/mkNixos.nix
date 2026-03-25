@@ -68,6 +68,7 @@ let
       );
 
       home-manager = {
+        backupFileExtension = "bak";
         useUserPackages = lib.mkDefault true;
         extraSpecialArgs = {
           inherit inputs;
