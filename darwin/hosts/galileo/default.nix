@@ -76,9 +76,10 @@
         "/Applications/Nix Apps/Cursor.app"
         "/Applications/Nix Apps/Ghostty.app"
         "/Applications/Nix Apps/MongoDB Compass.app"
-        "/Applications//Nix Apps/Postman.app"
+        # "/Applications//Nix Apps/Postman.app"
         # "/Applications/Nix Apps/Spotify.app"
-        "/Applications/ClickUp.app"
+        # "/Applications/ClickUp.app"
+        "/Applications/T3 Code (Alpha).app"
       ];
       show-recents = false;
 
