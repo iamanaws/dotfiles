@@ -63,13 +63,19 @@ in
 
   programs.claude-code = {
     enable = hostConfig.device.hostname == "galileo";
-    skills = { };
     settings = {
       includeCoAuthoredBy = false;
       permissions = {
         allow = [ ];
       };
     };
+    skills = { };
+  };
+
+  programs.codex = {
+    enable = config.programs.claude-code.enable;
+    settings = { };
+    skills = { };
   };
 
   programs.git = {
