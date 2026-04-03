@@ -38,8 +38,10 @@
         foxundermoon.shell-format
         jnoortheen.nix-ide
         mechatroner.rainbow-csv
+        miguelsolorio.fluent-icons
         ms-pyright.pyright
         ms-python.python
+        nomicfoundation.hardhat-solidity
         oderwat.indent-rainbow
         pkief.material-icon-theme
         tamasfe.even-better-toml
@@ -47,9 +49,6 @@
         redhat.vscode-xml
         redhat.vscode-yaml
         vue.volar
-
-        #miguelsolorio.fluent-icons
-        #nomicfoundation.hardhat-solidity
       ];
     };
   };

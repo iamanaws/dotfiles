@@ -9,6 +9,7 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
   imports = [ ../../../shared/services/flatpak.nix ];
 
   home.packages = with pkgs; [
+    adwaita-icon-theme
     bitwarden-desktop
     cutter
     # gramps
@@ -30,23 +31,6 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
     name = "WhiteSur-cursors";
     package = pkgs.whitesur-cursors;
     x11.enable = true;
-  };
-
-  # Configure GTK themes
-  gtk = {
-    enable = true;
-    theme = {
-      name = "WhiteSur-Dark";
-      package = pkgs.whitesur-gtk-theme;
-    };
-    cursorTheme = {
-      name = "WhiteSur-cursors";
-      package = pkgs.whitesur-cursors;
-    };
-    iconTheme = {
-      name = "kuyen-icons";
-      package = pkgs.kuyen-icons;
-    };
   };
 
   # mimeApps - find / -name '*.desktop'

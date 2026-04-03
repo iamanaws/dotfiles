@@ -118,9 +118,7 @@ in
       # ".idea"
     ];
 
-    hooks = {
-      pre-commit = ./pre-commit;
-    };
+    hooks = { };
   };
 
   # Nicely reload system units when changing configs

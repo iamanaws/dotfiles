@@ -137,10 +137,10 @@ in
 
     ignores = [
       ".env"
-
       ".DS_Store"
-      # ".vscode"
-      # ".idea"
+      ".cursor"
+      ".vscode"
+      ".idea"
     ];
 
     hooks = { };
@@ -150,5 +150,5 @@ in
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "25.05";
+  home.stateVersion = "26.05";
 }
