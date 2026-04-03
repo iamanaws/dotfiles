@@ -51,79 +51,13 @@ in
   programs.chromium = {
     enable = true;
     package = pkgs.brave;
-    extensions = [
-      "nngceckbapebfimnlniiiahkandclblb" # bitwarden
-      "ghmbeldphafepmbegfdlkpapadhbakde" # proton pass
-      "dphilobhebphkdjbpfohgikllaljmgbn" # simplelogin
-      "fnaicdffflnofjppbagibeoednhnbjhg" # floccus
-      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # ublock origin
-      "pkehgijcmpdhfbdbbnkijodmdjhbjlgp" # privacy badger
-      "oldceeleldhonbafppcapldpdifcinji" # language tool
-      "lnjaiaapbakfhlbjenjkhffcdpoompki" # catppuccin github icons
-      "gbmdgpbipfallnflgajpaliibnhdgobh" # json viewer
-      "gaiceihehajjahakcglkhmdbbdclbnlf" # video speed controller
-      "gppongmhjkpfnbhagpmjfkannfbllamg" # wappalyzer
-    ];
-
-    commandLineArgs = [
-      # "--enable-features=UseOzonePlatform "
-      # "--ozone-platform=x11"
-    ];
   };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-    userName = "iamanaws";
-    userEmail = "78835633+Iamanaws@users.noreply.github.com";
-    extraConfig = {
-      core.editor = "vim";
-      init.defaultBranch = "main";
-      fetch.prune = true;
-      fetch.prunetags = true;
-      merge.conflictStyle = "zdiff3";
-      push.autosetupremote = true;
-      push.followtags = true;
-
-      diff.algorithm = "histogram";
-      diff.colorMoved = "default";
-      help.autocorrect = "prompt";
-
-      #log.date = "iso";
-      branch.sort = "-committerdate";
-      tag.sort = "taggerdate";
-
-      # better submodule logs
-      status.submoduleSummary = true;
-      diff.submodule = "log";
-
-      # avoid data corruption
-      transfer.fsckobjects = true;
-      fetch.fsckobjects = true;
-      receive.fsckObjects = true;
-    };
-
-    aliases = {
-      pu = "push";
-      co = "checkout";
-      cm = "commit";
-    };
-
-    ignores = [
-      ".env"
-
-      ".DS_Store"
-      # ".vscode"
-      # ".idea"
-    ];
-
-    hooks = { };
-  };
-
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "24.05";
+  home.stateVersion = "26.05";
 }
