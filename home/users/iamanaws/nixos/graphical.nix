@@ -9,7 +9,6 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
   imports = [ ../../../shared/services/flatpak.nix ];
 
   home.packages = with pkgs; [
-    adwaita-icon-theme
     bitwarden-desktop
     cutter
     # gramps
@@ -31,6 +30,31 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
     name = "WhiteSur-cursors";
     package = pkgs.whitesur-cursors;
     x11.enable = true;
+  };
+
+  gtk = {
+    enable = true;
+    # GTK4 / libadwaita color scheme
+    colorScheme = "dark";
+
+    iconTheme = {
+      name = "kuyen-icons";
+      package = pkgs.kuyen-icons.overrideAttrs (old: {
+        propagatedBuildInputs = [ pkgs.adwaita-icon-theme ];
+        postInstall = ''
+          substituteInPlace $out/share/icons/kuyen-icons/index.theme \
+            --replace-fail 'Inherits=breeze,breeze-dark' 'Inherits=Adwaita'
+
+          find $out/share/icons/kuyen-icons -type l -delete
+        '';
+      });
+    };
+
+    # GTK2 / GTK3 themes
+    theme = {
+      name = "Adwaita-dark";
+      package = pkgs.gnome-themes-extra;
+    };
   };
 
   # mimeApps - find / -name '*.desktop'
