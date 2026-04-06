@@ -25,9 +25,7 @@
 
   };
 
-  # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
+  # Enable sound
   services.pipewire = {
     enable = true;
     alsa.enable = true;
@@ -66,36 +64,6 @@
       wl-clipboard
     ]
   );
-
-  xdg.portal = {
-    enable = true;
-    extraPortals =
-      with pkgs;
-      [
-        xdg-desktop-portal-gtk
-      ]
-      ++ lib.optionals hostConfig.hyprland [
-        xdg-desktop-portal-hyprland
-      ];
-
-    config = {
-      common = {
-        # Use xdg-desktop-portal-gtk for every interface unless otherwise specified
-        default = [ "gtk" ];
-      };
-    }
-    // lib.optionalAttrs hostConfig.hyprland {
-      hyprland = {
-        # For Hyprland sessions, use the hyprland portal first, then gtk as a fallback
-        default = [
-          "hyprland"
-          "gtk"
-        ];
-        "org.freedesktop.impl.portal.Settings" = [ "gtk" ];
-        "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ];
-      };
-    };
-  };
 
   security.polkit.enable = true;
 }
