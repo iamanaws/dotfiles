@@ -9,12 +9,22 @@
 {
   nix = {
     enable = true;
-    package = pkgs.lixPackageSets.stable.lix;
+    # stable gets broken on nixpkgs-unstable for aarch64-darwin
+    package = pkgs.lixPackageSets.latest.lix;
     settings = {
       experimental-features = [
         "nix-command"
         "flakes"
       ];
+
+      substituters = [
+        "https://cache.nixos.org"
+      ];
+
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      ];
+
       trusted-users = [ "@admin" ];
       extra-platforms = [
         "x86_64-darwin"
