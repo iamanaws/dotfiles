@@ -9,7 +9,7 @@
 {
   nix = {
     enable = true;
-    # stable gets broken on nixpkgs-unstable for aarch64-darwin
+    # stable gets broken on unstable for aarch64-darwin
     package = pkgs.lixPackageSets.latest.lix;
     settings = {
       experimental-features = [

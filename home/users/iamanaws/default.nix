@@ -62,7 +62,7 @@ in
   programs.home-manager.enable = true;
 
   programs.claude-code = {
-    enable = false; # hostConfig.device.hostname == "galileo";
+    enable = hostConfig.device.hostname == "galileo";
     settings = {
       includeCoAuthoredBy = false;
       permissions = {
