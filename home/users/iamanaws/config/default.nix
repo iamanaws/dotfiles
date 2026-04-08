@@ -10,6 +10,7 @@
 {
   imports = [
     ./neovim.nix
+    ./mpv.nix
     ./shell
     ./kitty.nix
     ./dunst

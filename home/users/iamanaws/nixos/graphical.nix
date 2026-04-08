@@ -59,9 +59,6 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
 
   programs = {
     imv.enable = true;
-    mpv = {
-      enable = true;
-    };
     zathura.enable = true;
 
     rofi = {
