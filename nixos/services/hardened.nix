@@ -12,7 +12,7 @@
   ];
 
   boot = {
-    kernelPackages = pkgs.linuxPackagesFor pkgs.linuxKernel.kernels.linux_hardened;
+    # kernelPackages = pkgs.linuxPackagesFor pkgs.linuxKernel.kernels.linux_hardened;
 
     # Enable unprivileged user namespaces (kernel-level risk)
     # for chromium based apps, flatpacks, and steam sandboxing
