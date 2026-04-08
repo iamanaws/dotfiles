@@ -9,6 +9,7 @@
 }:
 {
   imports = [
+    ./neovim.nix
     ./shell
     ./kitty.nix
     ./dunst

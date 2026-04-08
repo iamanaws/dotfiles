@@ -54,9 +54,7 @@ in
   };
 
   # Add environment variables
-  home.sessionVariables = {
-    EDITOR = "vim";
-  };
+  home.sessionVariables = { };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;

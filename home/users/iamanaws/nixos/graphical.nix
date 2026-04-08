@@ -57,6 +57,23 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
     };
   };
 
+  programs = {
+    imv.enable = true;
+    mpv = {
+      enable = true;
+    };
+    zathura.enable = true;
+
+    rofi = {
+      enable = true;
+      # font = "CascadiaCode";
+      theme = "Arc-Dark";
+      extraConfig = {
+        show-icons = true;
+      };
+    };
+  };
+
   # mimeApps - find / -name '*.desktop'
   xdg = {
     portal = {
@@ -91,7 +108,10 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
       enable = true;
       defaultApplications = {
         "application/octet-stream" = [ "re.rizin.cutter.desktop" ];
-        "application/pdf" = [ "cursor.desktop" ];
+        "application/pdf" = [
+          "org.pwmt.zathura.desktop"
+          "cursor.desktop"
+        ];
         "application/json" = [ "cursor.desktop" ];
 
         "inode/directory" = [ "thunar.desktop" ];
@@ -107,11 +127,11 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
         "text/html" = [ "cursor.desktop" ];
         "text/plain" = [ "cursor.desktop" ];
 
-        "video/*" = [ "com.github.rafostar.Clapper.desktop" ];
-        "video/mp4" = [ "com.github.rafostar.Clapper.desktop" ];
-        "video/mpeg" = [ "com.github.rafostar.Clapper.desktop" ];
-        "video/ogg" = [ "com.github.rafostar.Clapper.desktop" ];
-        "video/webm" = [ "com.github.rafostar.Clapper.desktop" ];
+        "video/*" = [ "mpv.desktop" ];
+        "video/mp4" = [ "mpv.desktop" ];
+        "video/mpeg" = [ "mpv.desktop" ];
+        "video/ogg" = [ "mpv.desktop" ];
+        "video/webm" = [ "mpv.desktop" ];
       };
     };
 
@@ -134,12 +154,4 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
     };
   };
 
-  programs.rofi = {
-    enable = true;
-    # font = "CascadiaCode";
-    theme = "Arc-Dark";
-    extraConfig = {
-      show-icons = true;
-    };
-  };
 }

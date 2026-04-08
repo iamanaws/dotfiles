@@ -21,9 +21,4 @@
   };
 
   home.packages = with pkgs; [ ];
-
-  # Add environment variables
-  home.sessionVariables = {
-    EDITOR = "vim";
-  };
 }

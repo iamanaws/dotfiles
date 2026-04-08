@@ -38,8 +38,6 @@
     with pkgs;
     [
       brave
-      clapper
-      imv
       # ghostty
       fuse
 
