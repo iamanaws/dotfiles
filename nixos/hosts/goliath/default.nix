@@ -14,6 +14,8 @@
     services.hardened
   ];
 
+  boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linuxKernel.kernels.linux_6_12;
+
   services.xserver.xkb.layout = "latam";
 
   services.flatpak.packages = [
