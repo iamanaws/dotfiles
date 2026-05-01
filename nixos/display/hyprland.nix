@@ -1,12 +1,4 @@
-# wayland.nix
-{
-  inputs,
-  outputs,
-  config,
-  lib,
-  pkgs,
-  ...
-}:
+{ ... }:
 
 {
   services.xserver.enable = false;

@@ -2,6 +2,7 @@
   pkgs,
   ...
 }:
+
 {
   programs.zed-editor = {
     enable = true;
@@ -185,7 +186,10 @@
         dark = "Tokyo Night Storm";
       };
       languages = {
-        Nix.language_servers = [ "nixd" "!nil" ];
+        Nix.language_servers = [
+          "nixd"
+          "!nil"
+        ];
       };
       # lsp = {
       #   nixd = {

@@ -263,11 +263,10 @@ in
             paths = [ cfg.package ];
             preferLocalBuild = true;
             nativeBuildInputs = [ pkgs.makeWrapper ];
-            postBuild =
-              ''
-                wrapProgram "$out/bin/zeditor" \
-                  --suffix PATH : ${extraPath}
-              '';
+            postBuild = ''
+              wrapProgram "$out/bin/zeditor" \
+                --suffix PATH : ${extraPath}
+            '';
           })
         ]
         # Zed on uses a shell-derived project environment for

@@ -1,8 +1,4 @@
-# graphical.nix
 {
-  inputs,
-  outputs,
-  config,
   hostConfig,
   lib,
   pkgs,

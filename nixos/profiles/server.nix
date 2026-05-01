@@ -1,8 +1,4 @@
-# minimal.nix
 {
-  config,
-  lib,
-  pkgs,
   nixosModules,
   ...
 }:

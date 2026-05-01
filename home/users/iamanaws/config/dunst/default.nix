@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   hostConfig,
@@ -29,7 +28,7 @@ let
 in
 {
   config = lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
-    home.packages = with pkgs; [ dunst-scripts ];
+    home.packages = [ dunst-scripts ];
 
     services.dunst = {
       enable = true;

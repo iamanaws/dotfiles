@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";

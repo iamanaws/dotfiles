@@ -4,15 +4,7 @@
   lib,
   ...
 }:
-let
-  mpvCheatsheetSmall = pkgs.mpvScripts.mpv-cheatsheet-ng.overrideAttrs (_: {
-    postInstall = ''
-      substituteInPlace "$out/share/mpv/scripts/cheatsheet.lua" \
-        --replace-fail 'font_size = 8,' 'font_size = 5.5,' \
-        --replace-fail 'usage_font_size = 6,' 'usage_font_size = 5,'
-    '';
-  });
-in
+
 lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
   programs.mpv = {
     enable = true;

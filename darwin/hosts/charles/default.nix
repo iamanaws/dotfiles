@@ -1,11 +1,7 @@
 {
-  inputs,
   outputs,
-  config,
-  lib,
   pkgs,
   darwinModules,
-  homeUsersRoot,
   ...
 }:
 

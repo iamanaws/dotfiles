@@ -78,9 +78,6 @@ let
 
       home-manager = {
         backupFileExtension = "bak";
-        sharedModules = [
-          (inputs.self + /home/shared/default.nix)
-        ];
         extraSpecialArgs = {
           inherit inputs;
           outputs = outputsForHM;

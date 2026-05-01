@@ -1,13 +1,9 @@
 {
-  inputs,
-  outputs,
   config,
   lib,
-  modulesPath,
   pkgs,
   flakeRoot,
   nixosModules,
-  homeUsersRoot,
   ...
 }:
 

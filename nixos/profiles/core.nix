@@ -1,7 +1,6 @@
 {
   inputs,
   outputs,
-  config,
   lib,
   pkgs,
   nixosModules,

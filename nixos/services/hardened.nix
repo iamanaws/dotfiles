@@ -1,9 +1,7 @@
 {
   inputs,
-  config,
   hostConfig,
   lib,
-  pkgs,
   ...
 }:
 {

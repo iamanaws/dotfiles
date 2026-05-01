@@ -1,11 +1,4 @@
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}:
+{ ... }:
 
 {
   imports = [ ../../shared/services/flatpak.nix ];

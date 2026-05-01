@@ -1,10 +1,6 @@
 {
-  inputs,
-  outputs,
-  config,
   lib,
   pkgs,
-  flakeRoot,
   ...
 }:
 

@@ -10,6 +10,5 @@ let
 in
 {
   dmenu-wpctl = callPackageDir ./dmenu-wpctl;
-  dsnote = callPackageDir ./dsnote;
   genai-toolbox = callPackageDir ./genai-toolbox;
 }
