@@ -8,8 +8,12 @@
 }:
 {
 
-  imports = [
+  disabledModules = [
+    "programs/zed-editor.nix"
+  ];
 
+  imports = [
+    ./programs/zed-editor.nix
   ];
 
 }

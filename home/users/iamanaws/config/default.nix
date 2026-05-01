@@ -16,5 +16,6 @@
     ./dunst
     ./hypr
     ./cursor.nix
+    ./zed.nix
   ];
 }
