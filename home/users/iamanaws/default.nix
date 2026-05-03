@@ -46,6 +46,19 @@ in
       #     patches = [ ./change-hello-to-hi.patch ];
       #   });
       # })
+
+      (final: prev: {
+        # remove after https://github.com/NixOS/nixpkgs/pull/516154 is merged
+        cutter = prev.cutter.overrideAttrs (oldAttrs: {
+          patches = [
+            (final.fetchpatch2 {
+              name = "fix-shiboken6-type-index-case.patch";
+              url = "https://github.com/rizinorg/cutter/commit/e945967984bc4f3f6127136b2cd170df24fbfaf3.patch?full_index=1";
+              hash = "sha256-/C/s+Ui5F7MCxbzbChQ5Tv/oUHUQxXmk9xOnNI80xwQ";
+            })
+          ];
+        });
+      })
     ];
 
     # Configure your nixpkgs instance
