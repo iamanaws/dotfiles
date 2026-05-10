@@ -5,15 +5,15 @@
   ...
 }:
 {
-  programs.vscode = lib.optionalAttrs hostConfig.isGraphical {
+  programs.cursor = lib.optionalAttrs hostConfig.isGraphical {
     enable = true;
-    package = pkgs.code-cursor;
     profiles.default = {
       userSettings = lib.mkMerge [
         {
           "editor.fontFamily" =
             if hostConfig.isDarwin then "'CaskaydiaMono Nerd Font', monospace" else "'CaskaydiaCove NF'";
           "editor.tabSize" = 2;
+          "editor.wordWrap" = "on";
           # "extensions.autoUpdate" = false;
           "files.autoSave" = "afterDelay";
           "files.autoSaveDelay" = 1000;
