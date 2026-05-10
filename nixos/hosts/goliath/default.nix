@@ -11,6 +11,7 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linuxKernel.kernels.linux_6_12;
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   services.xserver.xkb.layout = "latam";
 
