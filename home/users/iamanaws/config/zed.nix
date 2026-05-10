@@ -1,10 +1,12 @@
 {
+  lib,
   pkgs,
+  hostConfig,
   ...
 }:
 
 {
-  programs.zed-editor = {
+  programs.zed-editor = lib.optionalAttrs hostConfig.isGraphical {
     enable = true;
     mutableUserDebug = true;
     mutableUserKeymaps = true;

@@ -1,11 +1,8 @@
 {
-  inputs,
   outputs,
-  config,
   lib,
   pkgs,
   darwinModules,
-  homeUsersRoot,
   ...
 }:
 
@@ -78,7 +75,7 @@
         # "/Applications//Nix Apps/Postman.app"
         # "/Applications/Nix Apps/Spotify.app"
         # "/Applications/ClickUp.app"
-        "/Applications/T3 Code (Alpha).app"
+        "/Users/iamanaws/Applications/Home Manager Apps/T3 Code (Alpha).app"
       ];
       show-recents = false;
 

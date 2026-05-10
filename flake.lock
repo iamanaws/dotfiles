@@ -123,6 +123,27 @@
         "type": "github"
       }
     },
+    "hm-t3code": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1778444707,
+        "narHash": "sha256-2cKU0QM2JocgoHoIXd6fd/5TE3p7/HmTWh+btzAGw28=",
+        "owner": "iamanaws",
+        "repo": "home-manager",
+        "rev": "121062192dd518f9cad413639cd7c07b2f4ab4c9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "iamanaws",
+        "ref": "programs/t3code",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -415,6 +436,7 @@
     "root": {
       "inputs": {
         "disko": "disko",
+        "hm-t3code": "hm-t3code",
         "home-manager": "home-manager",
         "homebrew-cask": "homebrew-cask",
         "homebrew-core": "homebrew-core",

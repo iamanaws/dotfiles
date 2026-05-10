@@ -9,5 +9,6 @@
     ./hypr
     ./cursor.nix
     ./zed.nix
+    ./t3code.nix
   ];
 }

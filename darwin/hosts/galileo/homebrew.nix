@@ -1,4 +1,4 @@
-{ inputs, config, ... }:
+{ ... }:
 
 {
   nix-homebrew = {
@@ -18,6 +18,7 @@
     casks = [
       # pending to migrate
       "google-chrome"
+      "cursor-cli" # nixpkgs is outdated
 
       # broken on nixpkgs
       "flameshot"
@@ -25,7 +26,6 @@
 
       # not available on nixpkgs darwin
       "clickup"
-      "t3-code" # https://github.com/NixOS/nixpkgs/pull/497465
       # "logi-options+"
     ];
   };
