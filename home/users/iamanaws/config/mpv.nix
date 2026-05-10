@@ -5,7 +5,7 @@
   ...
 }:
 
-lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
+lib.optionalAttrs hostConfig.isGraphical {
   programs.mpv = {
     enable = true;
     scripts = with pkgs.mpvScripts; [
@@ -27,13 +27,17 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
       };
       modernz = {
         window_controls = "no";
-        speed_button_click = 0.10;
-        speed_button_scroll = 0.10;
+        speed_mbtn_left_command = "osd-msg add speed 0.1";
+        speed_mbtn_right_command = "osd-msg set speed 1";
+        speed_wheel_up_command = "osd-msg add speed 0.1";
+        speed_wheel_down_command = "osd-msg add speed -0.1";
         loop_button = "no";
         screenshot_button = "no";
         ontop_button = "no";
         seekbarfg_color = "#DCDFE4";
         seekbarbg_color = "#5A6374";
+        seek_handle_color = "#DCDFE4";
+        seek_handle_border_color = "";
         nibble_color = "#DCDFE4";
         hover_effect_color = "#DCDFE4";
         playpause_size = 18;
@@ -44,6 +48,7 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
         tooltip_font_size = 10;
         speed_font_size = 12;
         hover_effect = "size,color";
+        slider_hover_size = 110;
         seek_handle_size = 0.55;
       };
     };
