@@ -77,7 +77,7 @@ in
   programs.home-manager.enable = true;
 
   programs.claude-code = {
-    enable = hostConfig.device.hostname == "galileo";
+    enable = hostConfig.isGraphical;
     settings = {
       includeCoAuthoredBy = false;
       permissions = {
