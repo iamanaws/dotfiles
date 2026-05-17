@@ -5,17 +5,6 @@
   ...
 }:
 
-let
-  homebrew-cask = pkgs.runCommand "homebrew-cask-flameshot-override" {
-    src = inputs.homebrew-cask;
-  } ''
-    cp -R "$src" "$out"
-    chmod -R u+w "$out"
-
-    substituteInPlace "$out/Casks/f/flameshot.rb" \
-      --replace-fail $'\n  depends_on :macos\n' $'\n'
-  '';
-in
 {
   imports = [ inputs.nix-homebrew.darwinModules.nix-homebrew ];
 

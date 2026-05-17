@@ -49,11 +49,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hm-t3code = {
-      url = "github:iamanaws/home-manager/programs/t3code";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Shameless plug: looking for a way to nixify your themes and make
     # nix-colors.url = "github:misterio77/nix-colors";
     sops-nix.url = "github:Mic92/sops-nix";
