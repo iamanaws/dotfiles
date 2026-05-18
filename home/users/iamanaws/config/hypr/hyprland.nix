@@ -14,6 +14,7 @@
     settings = {
       debug = {
         # disable_logs = false;
+        vfr = true;
       };
 
       xwayland = {
@@ -134,7 +135,6 @@
 
       # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
       dwindle = {
-        pseudotile = true;
         preserve_split = true;
       };
 
@@ -148,7 +148,6 @@
         force_default_wallpaper = 0;
         disable_hyprland_logo = true;
         middle_click_paste = false;
-        vfr = true;
       };
 
       ### INPUT ###
@@ -222,7 +221,7 @@
 
         "$mod, V, toggle floating window, togglefloating,"
         "$mod, P, toggle pseudo mode, pseudo, # dwindle"
-        "$mod, J, toggle split mode, togglesplit, # dwindle"
+        "$mod, J, toggle split mode, layoutmsg, togglesplit"
 
         # Move focus with $mod + arrow keyshyprpicker
         "$mod, left, focus left, movefocus, l"
