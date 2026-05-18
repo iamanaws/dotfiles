@@ -25,7 +25,7 @@
     # Ensure to name the key as a unique folder starting with homebrew-
     taps = {
       "homebrew/homebrew-core" = inputs.homebrew-core;
-      "homebrew/homebrew-cask" = homebrew-cask;
+      "homebrew/homebrew-cask" = inputs.homebrew-cask;
     };
 
     # Optional: Enable fully-declarative tap management
