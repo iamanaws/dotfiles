@@ -1,7 +1,6 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
-  inputs,
   outputs,
   config,
   hostConfig,
@@ -12,7 +11,7 @@ let
   # `outputs` can vary depending on who instantiates home-manager (NixOS module vs standalone HM),
   # so prefer `outputs.overlays` when present, otherwise import overlays from the flake tree.
   flakeOverlays =
-    if outputs ? overlays then outputs.overlays else import ../../../overlays { inherit inputs; };
+    if outputs ? overlays then outputs.overlays else import ../../../overlays;
 in
 {
   disabledModules = [

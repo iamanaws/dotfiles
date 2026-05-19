@@ -78,7 +78,7 @@ let
   );
 
   allSystems = lib.unique (nixosSystems ++ darwinSystems);
-  pkgsFor = lib.genAttrs allSystems (system: import nixpkgs { inherit system; });
+  pkgsFor = lib.genAttrs allSystems (system: nixpkgs.legacyPackages.${system});
 
   defaultHomeDirFor = user: os: osDefaults.${os}.homeDir user;
 

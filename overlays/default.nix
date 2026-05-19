@@ -1,5 +1,4 @@
 # This file defines overlays
-{ ... }:
 {
   # This one brings our custom packages from the 'pkgs' directory
   additions =
@@ -25,10 +24,5 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
-    # postman =
-    #   (import inputs.postman {
-    #     system = prev.system;
-    #     config.allowUnfree = true;
-    #   }).postman;
   };
 }

@@ -28,7 +28,7 @@
         ];
       };
     };
-    
+
     userSettings = {
       enableAssistantStreaming = true;
       providerInstances = {

@@ -9,19 +9,22 @@ let
   lib = inputs.nixpkgs.lib;
   hostUtils = import ./hostUtils.nix { inherit lib; };
 
-  deviceConfig = hostUtils.loadDeviceConfig path;
+  loadedDeviceConfig = hostUtils.loadDeviceConfig path;
+  deviceConfig = loadedDeviceConfig // {
+    hostname = loadedDeviceConfig.hostname or name;
+  };
   homeUsersRoot = inputs.self + "/home/users";
   outputsForHM = hostUtils.mkOutputsForHM { inherit outputs inputs; };
 
-  hasHardware = builtins.pathExists "${path}/hardware.nix";
-  hasDisko = builtins.pathExists "${path}/disko.nix";
+  hasHardware = builtins.pathExists (path + "/hardware.nix");
+  hasDisko = builtins.pathExists (path + "/disko.nix");
 
   profileModulePath =
     let
       profile = deviceConfig.profile or null;
       base = ../nixos/profiles;
-      directDir = if profile == null then null else "${base}/${profile}";
-      directFile = if profile == null then null else "${base}/${profile}.nix";
+      directDir = if profile == null then null else base + "/${profile}";
+      directFile = if profile == null then null else base + "/${profile}.nix";
     in
     if deviceConfig ? profileModulePath then
       deviceConfig.profileModulePath
@@ -92,16 +95,14 @@ let
   modules = [
     baseModule
   ]
-  ++ lib.optional hasHardware "${path}/hardware.nix"
-  ++ lib.optional hasDisko "${path}/disko.nix"
+  ++ lib.optional hasHardware (path + "/hardware.nix")
+  ++ lib.optional hasDisko (path + "/disko.nix")
   ++ lib.optional (profileModulePath != null) profileModulePath
   ++ [ path ]
   ++ extraModules;
-
-  system = deviceConfig.system or "x86_64-linux";
 in
 inputs.nixpkgs.lib.nixosSystem {
-  inherit system modules;
+  inherit modules;
   specialArgs = {
     inherit inputs;
     outputs = outputsForHM;

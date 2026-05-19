@@ -1,16 +1,11 @@
 {
-  inputs,
   outputs,
-  lib,
-  config,
-  pkgs,
-  hostConfig,
   ...
 }:
 
 let
   flakeOverlays =
-    if outputs ? overlays then outputs.overlays else import ../../../../overlays { inherit inputs; };
+    if outputs ? overlays then outputs.overlays else import ../../../../overlays;
 in
 {
   imports = [
@@ -30,7 +25,7 @@ in
     homeDirectory = "/home/iamanaws";
   };
 
-  home.packages = with pkgs; [ ];
+  home.packages = [ ];
 
   home.sessionVariables = {
     EDITOR = "vim";

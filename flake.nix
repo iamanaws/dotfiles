@@ -89,34 +89,34 @@
         f:
         lib.genAttrs lib.systems.flakeExposed (
           system:
-          f {
-            pkgs = import nixpkgs {
+          f (
+            import nixpkgs {
               inherit system;
               config = {
                 allowUnfree = true;
                 permittedInsecurePackages = import ./lib/permittedInsecurePackages.nix;
               };
-            };
-          }
+            }
+          )
         );
     in
     {
-      formatter = forAllSystems ({ pkgs }: pkgs.nixfmt-tree);
+      formatter = forAllSystems (pkgs: pkgs.nixfmt-tree);
       packages = forAllSystems (
-        { pkgs }:
+        pkgs:
         let
           all = import ./pkgs { inherit pkgs; };
         in
         lib.filterAttrs (_: v: lib.isDerivation v && lib.meta.availableOn pkgs.stdenv.hostPlatform v) all
       );
-      overlays = import ./overlays { inherit inputs; };
+      overlays = import ./overlays;
 
       ### NixOS Configurations ###
       nixosConfigurations = lib.genAttrs nixosHosts (
         hostName:
         mkNixos {
           name = hostName;
-          path = ./nixos/hosts/${hostName};
+          path = ./nixos/hosts + "/${hostName}";
         }
       );
 
@@ -125,7 +125,7 @@
         hostName:
         mkDarwin {
           name = hostName;
-          path = ./darwin/hosts/${hostName};
+          path = ./darwin/hosts + "/${hostName}";
         }
       );
 

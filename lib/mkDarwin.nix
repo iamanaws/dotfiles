@@ -102,10 +102,9 @@ let
     path
   ]
   ++ extraModules;
-  system = deviceConfig.system or "x86_64-darwin";
 in
 inputs.nix-darwin.lib.darwinSystem {
-  inherit system modules;
+  inherit modules;
   specialArgs = {
     inherit inputs darwinModules homeUsersRoot;
     outputs = outputsForHM;
