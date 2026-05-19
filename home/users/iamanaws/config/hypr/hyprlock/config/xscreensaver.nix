@@ -16,6 +16,7 @@
 
   "$ready_message" = "Awaiting authentication method.";
   "$present_message" = "🧬 Analyzing DNA sequence...";
+  "$check_message" = "Identifying...";
 
   background = {
     color = "$base";
@@ -48,7 +49,7 @@
       position = "14%, 0%";
       halign = "center";
       valign = "center";
-      z-index = 1;
+      zindex = 1;
     }
   ];
 
@@ -78,14 +79,15 @@
     placeholder_text = "";
     hide_input = false;
     rounding = 1;
-    check_color = "$accent";
+    check_color = "$borderGray";
+    check_text = ''<span foreground="##$textAlpha">$check_message</span>'';
     fail_color = "$red";
-    fail_text = "";
+    fail_text = "<i>$PAMFAIL <b>($ATTEMPTS)</b></i>";
     capslock_color = "$yellow";
     position = "14%, -3%";
     halign = "center";
     valign = "center";
-    z-index = 1;
+    zindex = 1;
   };
 
   label = [
@@ -99,20 +101,11 @@
       valign = "center";
     }
     {
-      text = "$FPRINTMESSAGE";
+      text = "$FPRINTPROMPT $FPRINTFAIL";
       color = "$text";
       font_size = 14;
       font_family = "$font";
       position = "10.5%, 5%";
-      halign = "center";
-      valign = "center";
-    }
-    {
-      text = "<i>$FAIL <b>$ATTEMPTS[]</b></i>";
-      color = "$text";
-      font_size = 14;
-      font_family = "$font";
-      position = "10.5%, 3%";
       halign = "center";
       valign = "center";
     }
@@ -124,7 +117,7 @@
       position = "6%, 0%";
       halign = "center";
       valign = "center";
-      z-index = 1;
+      zindex = 1;
     }
     {
       text = "$USER";
@@ -134,7 +127,7 @@
       position = "12%, 0%";
       halign = "center";
       valign = "center";
-      z-index = 2;
+      zindex = 2;
     }
     {
       text = "<b> Password:</b>";
@@ -144,7 +137,7 @@
       position = "6%, -3%";
       halign = "center";
       valign = "center";
-      z-index = 1;
+      zindex = 1;
     }
     {
       text = ''cmd[update:60000] date +"%d-%b-%y (%a); %I:%M %p"'';

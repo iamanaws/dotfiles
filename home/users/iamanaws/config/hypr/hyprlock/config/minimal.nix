@@ -9,8 +9,9 @@
   "$surface0" = "rgb(5A6374)";
   "$font" = "caskaydia-cove";
 
-  "$ready_message" = "🕵️ Agent recognized. Awaiting fingerprint confirmation.";
-  "$present_message" = "🧬 Analyzing DNA sequence...";
+  "$ready_message" = "Scan fingerprint to unlock.";
+  "$present_message" = "Scanning fingerprint...";
+  "$check_message" = "Authenticating...";
 
   background = {
     blur_passes = 0;
@@ -31,6 +32,7 @@
     placeholder_text = ''<span foreground="##$textAlpha"><i>󰌾 Logged in as </i><span foreground="##$accentAlpha">$USER</span></span>'';
     hide_input = false;
     check_color = "$accent";
+    check_text = ''<span foreground="##$textAlpha">$check_message</span>'';
     fail_color = "$red";
     fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
     capslock_color = "$yellow";
@@ -41,7 +43,7 @@
 
   label = [
     {
-      text = "$FPRINTMESSAGE ";
+      text = "$FPRINTPROMPT $FPRINTFAIL";
       color = "$text";
       font_size = 15;
       font_family = "$font";
