@@ -10,7 +10,7 @@ in
   programs.hyprlock = {
     enable = true;
 
-    settings = xscreensaver // {
+    settings = minimal // {
 
       # source = "$HOME/.config/hypr/mocha.conf";
 
