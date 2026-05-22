@@ -4,7 +4,7 @@
     hostname = "charles";
     profile = "desktop";
     users = [ "admin" ];
-    stateVersion = 5;
+    stateVersion = 7;
     timezone = "America/Tijuana";
     locale = "en_US.UTF-8";
   };

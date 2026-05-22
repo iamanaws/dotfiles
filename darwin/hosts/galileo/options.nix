@@ -5,7 +5,7 @@
     profile = "laptop";
     openpgp.enable = true;
     users = [ "iamanaws" ];
-    stateVersion = 5;
+    stateVersion = 7;
     timezone = "America/Tijuana";
     locale = "en_US.UTF-8";
   };

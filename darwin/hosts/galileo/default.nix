@@ -3,9 +3,13 @@
   lib,
   pkgs,
   darwinModules,
+  config,
   ...
 }:
 
+let
+  userHome = config.users.users.${config.system.primaryUser}.home;
+in
 {
   imports = [
     darwinModules.default
@@ -75,7 +79,7 @@
         # "/Applications//Nix Apps/Postman.app"
         # "/Applications/Nix Apps/Spotify.app"
         # "/Applications/ClickUp.app"
-        "/Users/iamanaws/Applications/Home Manager Apps/T3 Code (Alpha).app"
+        "${userHome}/Applications/Home Manager Apps/T3 Code (Alpha).app"
       ];
       show-recents = false;
 
@@ -91,7 +95,7 @@
       FXPreferredViewStyle = "Nlsv";
       FXRemoveOldTrashItems = true;
       NewWindowTarget = "Other";
-      NewWindowTargetPath = "file:///Users/iamanaws/Downloads/";
+      NewWindowTargetPath = "file://${userHome}/Downloads/";
       ShowPathbar = true;
       _FXShowPosixPathInTitle = false;
       _FXSortFoldersFirst = true;
