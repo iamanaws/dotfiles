@@ -22,6 +22,15 @@
       )
     ];
 
+    # remove when reaching nixos-unstable https://nixpk.gs/pr-tracker.html?pr=519637
+    jitterentropy-rngd = prev.jitterentropy-rngd.overrideAttrs (oldAttrs: {
+      postPatch = ''
+        ${oldAttrs.postPatch or ""}
+        substituteInPlace jitterentropy.service.in \
+          --replace-fail "mincore mlock personality" "mincore mlockall personality"
+      '';
+    });
+
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });

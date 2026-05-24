@@ -9,11 +9,7 @@
   services = {
     desktopManager.gnome.enable = true;
     displayManager.defaultSession = "gnome";
-
-    displayManager.gdm = {
-      enable = true;
-      wayland = true;
-    };
+    displayManager.gdm.enable = true;
 
     udev = lib.mkIf config.hardware.nvidia.prime.offload.enable {
       packages =
