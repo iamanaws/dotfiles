@@ -13,13 +13,11 @@
   modifications = final: prev: {
     # remove when reaching nixos-unstable https://nixpk.gs/pr-tracker.html?pr=522705
     pythonPackagesExtensions = (prev.pythonPackagesExtensions or [ ]) ++ [
-      (
-        _pythonFinal: pythonPrev: {
-          jedi-language-server = pythonPrev.jedi-language-server.overridePythonAttrs (_oldAttrs: {
-            pythonRelaxDeps = [ "jedi" ];
-          });
-        }
-      )
+      (_pythonFinal: pythonPrev: {
+        jedi-language-server = pythonPrev.jedi-language-server.overridePythonAttrs (_oldAttrs: {
+          pythonRelaxDeps = [ "jedi" ];
+        });
+      })
     ];
 
     # remove when reaching nixos-unstable https://nixpk.gs/pr-tracker.html?pr=519637
