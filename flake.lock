@@ -12,7 +12,7 @@
       },
       "original": {
         "owner": "Homebrew",
-        "ref": "5.1.11",
+        "ref": "5.1.12",
         "repo": "brew",
         "type": "github"
       }
@@ -130,11 +130,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779969295,
-        "narHash": "sha256-HwIJ3tOcwSMiV75L7KqJXciXR9UfT+d7rwOZMX7cTnA=",
+        "lastModified": 1780099287,
+        "narHash": "sha256-efIPwVGtIWIjWcznhaop6XN6HxnOL8800hF6CBNvlqQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "61e2c9659324181e0f0ed911958c536333b1d4f6",
+        "rev": "7d8127d308c3fb9664f7e643eec944be74ebb37d",
         "type": "github"
       },
       "original": {
@@ -146,11 +146,11 @@
     "homebrew-cask": {
       "flake": false,
       "locked": {
-        "lastModified": 1780068122,
-        "narHash": "sha256-VW9EdGsMkkauybUoSx3ekgIOqFnL5sgjJjcySd5FsUE=",
+        "lastModified": 1780194602,
+        "narHash": "sha256-IvRWQdG5XNUCpTs1EDByU4YS40Cf45DKA888x3lXKWQ=",
         "owner": "homebrew",
         "repo": "homebrew-cask",
-        "rev": "57bbe9f5bc0137d7d42978d2c355b4fa5f2e920e",
+        "rev": "c528d7f85bcd3836dab71b4dc3ecf4201a54418e",
         "type": "github"
       },
       "original": {
@@ -162,11 +162,11 @@
     "homebrew-core": {
       "flake": false,
       "locked": {
-        "lastModified": 1780070333,
-        "narHash": "sha256-WJmirmgK07GxU9p8cpKR8CjTsofDy2Gi6MaZB27xRXQ=",
+        "lastModified": 1780186258,
+        "narHash": "sha256-PnG4U6bSc1P0oG4uJVG+z6Yi2C+Ucrtwb3Ao1UzMmI0=",
         "owner": "homebrew",
         "repo": "homebrew-core",
-        "rev": "ee5f78daff5b39b22af1b60f5bb239fcfe24e47c",
+        "rev": "46dcf94110e8f8bf6a4694a14d73ac7f1cfc8950",
         "type": "github"
       },
       "original": {
@@ -225,11 +225,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779461966,
-        "narHash": "sha256-BF2ZbFMLpj1A0crJ1GON6sb6jhiqsJ8eFGrsATHmo+A=",
+        "lastModified": 1780185318,
+        "narHash": "sha256-TdpYW6qIfg3eQsmPdI7RczSZAypRWp6Os7v7gl0p5zM=",
         "owner": "iamanaws",
         "repo": "nix-darwin",
-        "rev": "b9b0db0b29df90853f562371d8831bcc8ae2bb79",
+        "rev": "d77c1070ff503d8281372dbe66333ed0c09e8f39",
         "type": "github"
       },
       "original": {
