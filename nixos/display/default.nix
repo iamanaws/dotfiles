@@ -33,7 +33,6 @@
   environment.systemPackages = (
     with pkgs;
     [
-      brave
       # ghostty
       fuse
 
