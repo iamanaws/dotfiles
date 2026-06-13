@@ -4,6 +4,7 @@
   outputs,
   config,
   hostConfig,
+  pkgs,
   ...
 }:
 
@@ -57,6 +58,8 @@ in
 
   # Add environment variables
   home.sessionVariables = { };
+
+  home.packages = with pkgs; [ nixd ];
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
