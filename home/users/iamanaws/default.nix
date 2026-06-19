@@ -61,13 +61,23 @@ in
 
   home.packages = with pkgs; [ nixd ];
 
+  programs.mcp = {
+    enable = config.programs.claude-code.enable || config.programs.codex.enable;
+    servers = {
+      cxf-docs.url = "https://docs.cxf.app/mcp";
+    };
+  };
+
   # Enable home-manager and git
   programs.home-manager.enable = true;
 
   programs.claude-code = {
     enable = hostConfig.isGraphical;
+    enableMcpIntegration = true;
     settings = {
       includeCoAuthoredBy = false;
+      model = "opus";
+      effortLevel = "xhigh";
       permissions = {
         allow = [ ];
       };
@@ -77,6 +87,7 @@ in
 
   programs.codex = {
     enable = config.programs.claude-code.enable;
+    enableMcpIntegration = true;
     settings = { };
     skills = { };
   };
