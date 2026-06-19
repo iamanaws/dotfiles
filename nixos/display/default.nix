@@ -18,16 +18,21 @@
   ];
 
   services = {
+    gnome.gnome-keyring.enable = lib.mkForce false;
 
-  };
+    dbus.packages = with pkgs; [
+      oo7-server
+      oo7-portal
+    ];
 
-  # Enable sound
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    jack.enable = true;
+    # Enable sound
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+      jack.enable = true;
+    };
   };
 
   environment.systemPackages = (
@@ -35,6 +40,7 @@
     [
       # ghostty
       fuse
+      oo7
 
       brightnessctl
       playerctl

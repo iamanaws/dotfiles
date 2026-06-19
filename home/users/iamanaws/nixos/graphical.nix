@@ -1,5 +1,4 @@
 {
-  config,
   lib,
   pkgs,
   hostConfig,
@@ -78,6 +77,7 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
       extraPortals =
         with pkgs;
         [
+          oo7-portal
           xdg-desktop-portal-gtk
         ]
         ++ lib.optionals hostConfig.hyprland [
@@ -87,6 +87,7 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
       config = {
         common = {
           default = [ "gtk" ];
+          "org.freedesktop.impl.portal.Secret" = [ "oo7" ];
         };
       }
       // lib.optionalAttrs hostConfig.hyprland {
@@ -97,6 +98,7 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
           ];
           "org.freedesktop.impl.portal.FileChooser" = "gtk";
           "org.freedesktop.impl.portal.Print" = "gtk";
+          "org.freedesktop.impl.portal.Secret" = [ "oo7" ];
         };
       };
     };
