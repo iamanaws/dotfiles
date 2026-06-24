@@ -69,6 +69,7 @@
       system = {
         lock-root = false;
         unprivileged-userns = true;
+        zram = true;
       };
     };
   };
