@@ -15,11 +15,11 @@
     };
 
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/001e560fffc8f0235e9db20ebeb4ccde0ade1caf";
+      url = "github:nix-community/lanzaboote/v1.1.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-mineral.url = "github:cynicsketch/nix-mineral/3c866b2652494b88e27b75315e729e0b8e2876f0";
+    nix-mineral.url = "github:cynicsketch/nix-mineral/008f751e4bc6d03cd8bc4479a45dad64e355da5c";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
