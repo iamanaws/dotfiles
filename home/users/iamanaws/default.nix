@@ -59,7 +59,10 @@ in
   # Add environment variables
   home.sessionVariables = { };
 
-  home.packages = with pkgs; [ nixd ];
+  home.packages = with pkgs; [
+    cursor-cli
+    nixd
+  ];
 
   programs.mcp = {
     enable = config.programs.claude-code.enable || config.programs.codex.enable;
