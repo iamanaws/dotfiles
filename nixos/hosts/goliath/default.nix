@@ -6,8 +6,9 @@
 
 {
   imports = with nixosModules; [
+    gaming
+    hardened
     services.flatpak
-    services.hardened
   ];
 
   boot.kernelPackages = pkgs.linuxPackagesFor pkgs.linuxKernel.kernels.linux_6_12;

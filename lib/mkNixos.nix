@@ -16,6 +16,12 @@ let
   };
   homeUsersRoot = inputs.self + "/home/users";
   outputsForHM = hostUtils.mkOutputsForHM { inherit outputs inputs; };
+  rawNixosModules = hostUtils.mkModuleTree (inputs.self + /nixos);
+  nixosModules =
+    rawNixosModules
+    // lib.filterAttrs (name: _: !(builtins.hasAttr name rawNixosModules)) (
+      rawNixosModules.modules or { }
+    );
 
   hasHardware = builtins.pathExists (path + "/hardware.nix");
   hasDisko = builtins.pathExists (path + "/disko.nix");
@@ -118,7 +124,7 @@ inputs.nixpkgs.lib.nixosSystem {
     homeRoot = inputs.self + /home;
     inherit homeUsersRoot;
     inherit hostConfig;
-    nixosModules = hostUtils.mkModuleTree (inputs.self + /nixos);
+    inherit nixosModules;
   }
   // specialArgs;
 }

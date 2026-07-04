@@ -14,5 +14,13 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+
+    # remove after 2026.7.0
+    # https://github.com/bitwarden/clients/pull/20448
+    # https://github.com/bitwarden/clients/issues/21581
+    # https://github.com/bitwarden/clients/pull/20844
+    bitwarden-desktop = prev.bitwarden-desktop.override {
+      electron_39 = final.electron_39-bin;
+    };
   };
 }

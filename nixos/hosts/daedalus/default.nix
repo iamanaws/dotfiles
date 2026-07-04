@@ -17,9 +17,9 @@ in
     secrets
   ]
   ++ (with nixosModules; [
-    services.auto-upgrade
+    hardened
     programs.lanzaboote
-    services.hardened
+    services.auto-upgrade
   ]);
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.

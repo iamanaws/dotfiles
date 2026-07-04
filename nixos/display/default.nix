@@ -18,12 +18,7 @@
   ];
 
   services = {
-    gnome.gnome-keyring.enable = lib.mkForce false;
-
-    dbus.packages = with pkgs; [
-      oo7-server
-      oo7-portal
-    ];
+    gnome.gnome-keyring.enable = lib.mkDefault true;
 
     # Enable sound
     pipewire = {
@@ -40,7 +35,6 @@
     [
       # ghostty
       fuse
-      oo7
 
       brightnessctl
       playerctl

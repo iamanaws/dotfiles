@@ -12,6 +12,12 @@ let
 
   deviceConfig = hostUtils.loadDeviceConfig path;
   darwinModules = hostUtils.mkModuleTree (inputs.self + /darwin);
+  rawNixosModules = hostUtils.mkModuleTree (inputs.self + /nixos);
+  nixosModules =
+    rawNixosModules
+    // lib.filterAttrs (name: _: !(builtins.hasAttr name rawNixosModules)) (
+      rawNixosModules.modules or { }
+    );
   homeUsersRoot = inputs.self + "/home/users";
   outputsForHM = hostUtils.mkOutputsForHM { inherit outputs inputs; };
 
@@ -119,7 +125,7 @@ inputs.nix-darwin.lib.darwinSystem {
     darwinRoot = inputs.self + /darwin;
     homeRoot = inputs.self + /home;
     inherit hostConfig;
-    nixosModules = hostUtils.mkModuleTree (inputs.self + /nixos);
+    inherit nixosModules;
   }
   // specialArgs;
 }

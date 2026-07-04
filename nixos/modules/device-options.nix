@@ -107,7 +107,7 @@ with lib;
 
     stateVersion = mkOption {
       type = types.str;
-      default = "24.11";
+      default = "26.05";
       description = "System stateVersion for compatibility.";
     };
 

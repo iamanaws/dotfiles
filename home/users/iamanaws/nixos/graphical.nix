@@ -77,7 +77,7 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
       extraPortals =
         with pkgs;
         [
-          oo7-portal
+          gnome-keyring
           xdg-desktop-portal-gtk
         ]
         ++ lib.optionals hostConfig.hyprland [
@@ -87,7 +87,7 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
       config = {
         common = {
           default = [ "gtk" ];
-          "org.freedesktop.impl.portal.Secret" = [ "oo7" ];
+          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
         };
       }
       // lib.optionalAttrs hostConfig.hyprland {
@@ -98,7 +98,7 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
           ];
           "org.freedesktop.impl.portal.FileChooser" = "gtk";
           "org.freedesktop.impl.portal.Print" = "gtk";
-          "org.freedesktop.impl.portal.Secret" = [ "oo7" ];
+          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
         };
       };
     };

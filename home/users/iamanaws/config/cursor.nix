@@ -5,7 +5,7 @@
   ...
 }:
 {
-  programs.cursor = lib.optionalAttrs hostConfig.isGraphical {
+  programs.cursor = lib.optionalAttrs hostConfig.isGraphical ({
     enable = true;
     profiles.default = {
       userSettings = lib.mkMerge [
@@ -51,5 +51,16 @@
         vue.volar
       ];
     };
-  };
+  } // lib.optionalAttrs hostConfig.isLinux {
+    package = pkgs.symlinkJoin {
+      name = "cursor-with-keyring";
+      paths = [ pkgs.code-cursor ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/cursor \
+          --add-flags "--password-store=gnome-libsecret"
+      '';
+      meta = pkgs.code-cursor.meta;
+    };
+  });
 }

@@ -8,6 +8,7 @@ let
     "caido-desktop"
     "claude-code"
     "cursor"
+    "cursor-with-keyring"
     "cursor-cli"
     "jetbrains-toolbox"
     "mongodb-compass"
@@ -32,7 +33,7 @@ let
     "ant" # libreoffice build dependency
     "cargo-bootstrap" # dependency of nixfmt-tree
     "dart" # bitwarden-desktop -> dart-sass -> dart
-    "electron"
+    "electron" # bitwarden-desktop uses the binary electron runtime
     "ghc-binary" # dependency of nixfmt-tree
     "go" # bootstrap dependency of nixfmt-tree
     "gradle" # libreoffice -> rhino -> gradle
@@ -47,14 +48,14 @@ let
   unfreePackages = binaryUnfreePackages ++ [
     # Apps
     "aseprite"
+    "kuyen-icons"
     "nvidia-settings"
     "steam"
+    "steam-unwrapped"
     "vscode"
+    "vscode-extension-bmewburn-vscode-intelephense-client"
 
     # Dependencies
-    "kuyen-icons"
-    "steam-unwrapped"
-    "vscode-extension-bmewburn-vscode-intelephense-client"
   ];
 
   sourceProvenanceOf = pkg: lib.toList (pkg.meta.sourceProvenance or [ ]);

@@ -14,8 +14,8 @@ in
     secrets
   ]
   ++ (with nixosModules; [
+    hardened
     programs.lanzaboote
-    services.hardened
     services.automount
   ]);
 
