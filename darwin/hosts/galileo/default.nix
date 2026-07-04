@@ -16,8 +16,6 @@ in
     ./homebrew.nix
   ];
 
-  nixpkgs.config.allowUnfree = true;
-
   nixpkgs.overlays = [
     outputs.overlays.additions
     outputs.overlays.modifications

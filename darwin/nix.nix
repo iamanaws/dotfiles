@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  flakeRoot,
   ...
 }:
 
@@ -45,9 +44,6 @@
       max-free = ${toString (1024 * 1024 * 1024)}
     '';
   };
-
-  nixpkgs.config.permittedInsecurePackages = import (flakeRoot + /lib/permittedInsecurePackages.nix);
-
   nixpkgs.overlays = [
     (final: prev: {
       inherit (prev.lixPackageSets.stable)

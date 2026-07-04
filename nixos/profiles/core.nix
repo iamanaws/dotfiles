@@ -47,11 +47,6 @@
       #   });
       # })
     ];
-    # Configure your nixpkgs instance
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
-    };
   };
 
   # Pick only one of the below networking options.

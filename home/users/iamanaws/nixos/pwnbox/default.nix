@@ -37,10 +37,6 @@ in
       flakeOverlays.additions
       flakeOverlays.modifications
     ];
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-    };
   };
 
   systemd.user.startServices = "sd-switch";

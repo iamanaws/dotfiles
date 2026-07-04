@@ -91,10 +91,7 @@
           f (
             import nixpkgs {
               inherit system;
-              config = {
-                allowUnfree = true;
-                permittedInsecurePackages = import ./lib/permittedInsecurePackages.nix;
-              };
+              config = import ./lib/nixpkgsConfig.nix { inherit lib; };
             }
           )
         );

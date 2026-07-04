@@ -7,6 +7,7 @@
 let
   flakeRoot = inputs.self;
   hostUtils = import ./hostUtils.nix { inherit lib; };
+  nixpkgsConfig = import ./nixpkgsConfig.nix { inherit lib; };
 
   usersDir = flakeRoot + /home/users;
   sharedModule = flakeRoot + /home/shared/default.nix;
@@ -139,6 +140,9 @@ let
           {
             pkgs = pkgsFor.${system};
             modules = [
+              {
+                nixpkgs.config = nixpkgsConfig;
+              }
               sharedModule
               modulePath
               {

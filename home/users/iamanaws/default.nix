@@ -46,14 +46,6 @@ in
       #   });
       # })
     ];
-
-    # Configure your nixpkgs instance
-    config = {
-      # Disable if you don't want unfree packages
-      allowUnfree = true;
-      allowUnfreePredicate = _: true;
-      permittedInsecurePackages = import ../../../lib/permittedInsecurePackages.nix;
-    };
   };
 
   # Add environment variables

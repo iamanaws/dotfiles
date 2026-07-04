@@ -8,6 +8,7 @@
 let
   lib = inputs.nixpkgs.lib;
   hostUtils = import ./hostUtils.nix { inherit lib; };
+  nixpkgsConfig = import ./nixpkgsConfig.nix { inherit lib; };
 
   loadedDeviceConfig = hostUtils.loadDeviceConfig path;
   deviceConfig = loadedDeviceConfig // {
@@ -58,6 +59,7 @@ let
       ];
 
       device = deviceConfig;
+      nixpkgs.config = nixpkgsConfig;
       nixpkgs.hostPlatform = lib.mkDefault (deviceConfig.system or "x86_64-linux");
 
       users.users = lib.mkMerge (
@@ -73,6 +75,11 @@ let
       home-manager = {
         backupFileExtension = "bak";
         useUserPackages = lib.mkDefault true;
+        sharedModules = [
+          {
+            nixpkgs.config = nixpkgsConfig;
+          }
+        ];
         extraSpecialArgs = {
           inherit inputs;
           outputs = outputsForHM;

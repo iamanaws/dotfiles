@@ -8,6 +8,7 @@
 let
   lib = inputs.nixpkgs.lib;
   hostUtils = import ./hostUtils.nix { inherit lib; };
+  nixpkgsConfig = import ./nixpkgsConfig.nix { inherit lib; };
 
   deviceConfig = hostUtils.loadDeviceConfig path;
   darwinModules = hostUtils.mkModuleTree (inputs.self + /darwin);
@@ -61,6 +62,7 @@ let
       ];
 
       device = deviceConfig;
+      nixpkgs.config = nixpkgsConfig;
       nixpkgs.hostPlatform = lib.mkDefault (deviceConfig.system or "x86_64-darwin");
 
       networking = {
@@ -78,6 +80,11 @@ let
 
       home-manager = {
         backupFileExtension = "bak";
+        sharedModules = [
+          {
+            nixpkgs.config = nixpkgsConfig;
+          }
+        ];
         extraSpecialArgs = {
           inherit inputs;
           outputs = outputsForHM;

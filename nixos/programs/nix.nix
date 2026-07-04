@@ -1,13 +1,10 @@
 {
   inputs,
   lib,
-  flakeRoot,
   ...
 }:
 
 {
-  nixpkgs.config.permittedInsecurePackages = import (flakeRoot + /lib/permittedInsecurePackages.nix);
-
   nix = {
     settings = {
       auto-optimise-store = true;
