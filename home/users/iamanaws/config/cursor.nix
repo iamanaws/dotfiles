@@ -19,7 +19,11 @@
           "files.autoSaveDelay" = 1000;
           "update.mode" = "none";
           "window.menuBarVisibility" = "toggle";
+          "window.autoDetectColorScheme" = false;
+          "window.systemColorTheme" = "dark";
           "workbench.colorTheme" = "Tokyo Night Storm";
+          "workbench.preferredDarkColorTheme" = "Tokyo Night Storm";
+          "workbench.preferredLightColorTheme" = "Tokyo Night Light";
           "workbench.iconTheme" = "material-icon-theme";
           "workbench.productIconTheme" = "fluent-icons";
           "[vue]" = {
