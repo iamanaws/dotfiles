@@ -16,7 +16,6 @@
         "pkehgijcmpdhfbdbbnkijodmdjhbjlgp" # privacy badger
         "oldceeleldhonbafppcapldpdifcinji" # language tool
         "lnjaiaapbakfhlbjenjkhffcdpoompki" # catppuccin github icons
-        "gbmdgpbipfallnflgajpaliibnhdgobh" # json viewer
         "nffaoalbilbmmfgbnbgppjihopabppdk" # video speed controller
         "gppongmhjkpfnbhagpmjfkannfbllamg" # wappalyzer
       ];
