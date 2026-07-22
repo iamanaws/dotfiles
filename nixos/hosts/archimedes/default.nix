@@ -19,6 +19,8 @@ in
     services.automount
   ]);
 
+  programs.zoom-us.enable = true;
+
   environment.systemPackages = with pkgs; [
     # dsnote
     mongodb-compass

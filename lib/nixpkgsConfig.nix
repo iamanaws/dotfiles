@@ -15,6 +15,7 @@ let
     "ngrok"
     "postman"
     "reaper"
+    "zoom"
   ];
 
   nonSourcePackages = binaryUnfreePackages ++ [

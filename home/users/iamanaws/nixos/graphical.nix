@@ -26,8 +26,9 @@ lib.optionalAttrs (hostConfig.isGraphical && hostConfig.isLinux) {
   ];
 
   home.pointerCursor = {
-    name = "WhiteSur-cursors";
+    enable = true;
     package = pkgs.whitesur-cursors;
+    name = "WhiteSur-cursors";
     x11.enable = true;
   };
 

@@ -28,6 +28,8 @@
     # garden.jamie.Morphosis
   ];
 
+  programs.zoom-us.enable = true;
+
   environment.systemPackages = with pkgs; [
     aseprite
     egl-wayland
