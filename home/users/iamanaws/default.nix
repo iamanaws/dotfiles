@@ -1,6 +1,7 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
+  inputs,
   outputs,
   config,
   hostConfig,
@@ -12,6 +13,7 @@ let
   # `outputs` can vary depending on who instantiates home-manager (NixOS module vs standalone HM),
   # so prefer `outputs.overlays` when present, otherwise import overlays from the flake tree.
   flakeOverlays = if outputs ? overlays then outputs.overlays else import ../../../overlays;
+  llmAgentPkgs = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   disabledModules = [
@@ -69,6 +71,9 @@ in
   programs.claude-code = {
     enable = hostConfig.isGraphical;
     enableMcpIntegration = true;
+    package = llmAgentPkgs.claude-code.override {
+      disableTelemetry = true;
+    };
     settings = {
       includeCoAuthoredBy = false;
       model = "opus";
@@ -83,6 +88,7 @@ in
   programs.codex = {
     enable = config.programs.claude-code.enable;
     enableMcpIntegration = true;
+    package = llmAgentPkgs.codex;
     settings = { };
     skills = { };
   };

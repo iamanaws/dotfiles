@@ -15,7 +15,7 @@
         favorites = [
           {
             provider = "claudeAgent";
-            model = "claude-opus-4-8";
+            model = "claude-opus-5";
           }
           # {
           #   provider = "codex";
@@ -27,50 +27,70 @@
           }
           {
             provider = "cursor";
-            model = "gpt-5.5";
+            model = "cursor-grok-4.5";
           }
           {
             provider = "cursor";
-            model = "gpt-5.4";
+            model = "gpt-5.6-sol";
           }
         ];
         providerModelPreferences = {
           codex.hiddenModels = [
             "gpt-5.2"
             "gpt-5.3-codex"
+            # "gpt-5.4-mini"
+            "gpt-5.4"
+            "gpt-5.5"
+            # "gpt-5.6-luna"
+            "gpt-5.6-terra"
+            # "gpt-5.6-sol"
           ];
           claudeAgent.hiddenModels = [
+            "claude-haiku-4-5"
+            "claude-sonnet-4-6"
             "claude-opus-4-6"
             "claude-opus-4-5"
             "claude-opus-4-7"
-            "claude-sonnet-4-6"
-            "claude-haiku-4-5"
+            "claude-opus-4-8"
+            # "claude-opus-5"
+            "claude-fable-5"
           ];
           cursor.hiddenModels = [
-            "claude-sonnet-4-6"
-            "gpt-5.3-codex"
-            "claude-opus-4-7"
-            "grok-build-0.1"
-            "claude-opus-4-6"
-            "claude-opus-4-5"
-            "gpt-5.2"
-            "gemini-3.1-pro"
-            "gpt-5.4-mini"
-            "gpt-5.4-nano"
             "claude-haiku-4-5"
-            "grok-4.3"
-            "claude-sonnet-4-5"
-            "gpt-5.2-codex"
-            "gpt-5.1-codex-max"
-            "gpt-5.1"
-            "gemini-3-flash"
-            "gemini-3.5-flash"
-            "gpt-5.1-codex-mini"
             "claude-sonnet-4"
-            "gpt-5-mini"
-            "gemini-2.5-flash"
-            "kimi-k2.5"
+            "claude-sonnet-4-5"
+            "claude-sonnet-4-6"
+            "claude-sonnet-5"
+            "claude-opus-4-5"
+            "claude-opus-4-6"
+            "claude-opus-4-7"
+            "claude-opus-4-8"
+            # "claude-opus-5"
             "claude-fable-5"
+            "gemini-2.5-flash"
+            "gemini-3-flash"
+            "gemini-3.1-pro"
+            "gemini-3.5-flash"
+            "gemini-3.6-flash"
+            "kimi-k2.5"
+            "kimi-k2.7-code"
+            "glm-5.2"
+            "gpt-5-mini"
+            "gpt-5.1"
+            "gpt-5.1-codex-mini"
+            "gpt-5.1-codex-max"
+            "gpt-5.2"
+            "gpt-5.2-codex"
+            "gpt-5.3-codex"
+            "gpt-5.4-nano"
+            "gpt-5.4-mini"
+            "gpt-5.4"
+            "gpt-5.5"
+            "gpt-5.6-luna"
+            "gpt-5.6-terra"
+            # "gpt-5.6-sol"
+            "grok-build-0.1"
+            "grok-4.3"
           ];
         };
       };

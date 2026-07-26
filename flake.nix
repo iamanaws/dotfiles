@@ -7,6 +7,8 @@
     # Nixpkgs source, pinned for the entire system
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    llm-agents.url = "github:numtide/llm-agents.nix";
+
     #### NIXOS ####
 
     disko = {
