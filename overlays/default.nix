@@ -15,12 +15,20 @@
     # ...
     # });
 
-    # remove after 2026.7.0
-    # https://github.com/bitwarden/clients/pull/20448
-    # https://github.com/bitwarden/clients/issues/21581
-    # https://github.com/bitwarden/clients/pull/20844
-    bitwarden-desktop = prev.bitwarden-desktop.override {
-      electron_39 = final.electron_39-bin;
+    t3code = prev.t3code.override {
+      t3code-unwrapped = final.callPackage "${
+        final.applyPatches {
+          name = "t3code-0.0.29-source";
+          src = "${prev.path}/pkgs/by-name/t3/t3code";
+          patches = [
+            (final.fetchpatch2 {
+              url = "https://github.com/NixOS/nixpkgs/pull/546533.patch?full_index=1";
+              hash = "sha256-Tz2s1jJoLhGLLG8DY6RQc2OCIAw9oVY79I+gKMRXK9s=";
+            })
+          ];
+          patchFlags = [ "-p5" ];
+        }
+      }/unwrapped.nix" { };
     };
   };
 }

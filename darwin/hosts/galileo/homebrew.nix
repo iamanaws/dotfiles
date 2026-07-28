@@ -18,7 +18,6 @@
     casks = [
       # pending to migrate
       "google-chrome"
-      "cursor-cli" # nixpkgs is outdated
 
       # broken on nixpkgs
       "flameshot"

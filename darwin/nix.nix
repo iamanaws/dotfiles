@@ -5,6 +5,8 @@
 }:
 
 {
+  imports = [ ../lib/nix-caches.nix ];
+
   nix = {
     enable = true;
     # stable gets broken on unstable for aarch64-darwin
@@ -13,14 +15,6 @@
       experimental-features = [
         "nix-command"
         "flakes"
-      ];
-
-      substituters = [
-        "https://cache.nixos.org"
-      ];
-
-      trusted-public-keys = [
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       ];
 
       trusted-users = [ "@admin" ];

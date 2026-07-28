@@ -53,10 +53,12 @@ in
   # Add environment variables
   home.sessionVariables = { };
 
-  home.packages = with pkgs; [
-    cursor-cli
-    nixd
-  ];
+  home.packages =
+    with pkgs;
+    [
+      nixd
+    ]
+    ++ [ llmAgentPkgs.cursor-agent ];
 
   programs.mcp = {
     enable = config.programs.claude-code.enable || config.programs.codex.enable;
