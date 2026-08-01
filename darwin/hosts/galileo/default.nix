@@ -37,9 +37,7 @@ in
 
   environment.systemPackages = with pkgs; [
     asciidoctor
-    bitbucket-cli
     cachix
-    clickup-cli
     code-cursor
     colima
     docker
@@ -56,7 +54,8 @@ in
     postman
     # spotify
     nodejs
-    corepack
+    nur.iamanaws.bitbucket-cli
+    nur.iamanaws.clickup-cli
   ];
 
   system.defaults = {

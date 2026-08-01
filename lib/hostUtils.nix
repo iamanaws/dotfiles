@@ -179,7 +179,7 @@ let
   mkOutputsForHM =
     { outputs, inputs }:
     let
-      flakeOverlays = import (inputs.self + /overlays);
+      flakeOverlays = import (inputs.self + /overlays) { inherit (inputs) nur; };
     in
     outputs // { overlays = outputs.overlays or flakeOverlays; };
 

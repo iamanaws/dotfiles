@@ -7,6 +7,11 @@
     # Nixpkgs source, pinned for the entire system
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     llm-agents.url = "github:numtide/llm-agents.nix";
 
     #### NIXOS ####
@@ -107,7 +112,7 @@
         in
         lib.filterAttrs (_: v: lib.isDerivation v && lib.meta.availableOn pkgs.stdenv.hostPlatform v) all
       );
-      overlays = import ./overlays;
+      overlays = import ./overlays { inherit (inputs) nur; };
 
       ### NixOS Configurations ###
       nixosConfigurations = lib.genAttrs nixosHosts (

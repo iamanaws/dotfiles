@@ -41,9 +41,9 @@
       tray-tui
 
       rofi
-      dmenu-wpctl
       rofi-bluetooth
       networkmanager_dmenu
+      nur.iamanaws.dmenu-wpctl
     ]
     ++ lib.optionals hostConfig.hyprland [
       grim
