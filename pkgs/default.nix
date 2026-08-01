@@ -12,5 +12,4 @@ in
   bitbucket-cli = callPackageDir ./bitbucket-cli;
   clickup-cli = callPackageDir ./clickup-cli;
   dmenu-wpctl = callPackageDir ./dmenu-wpctl;
-  genai-toolbox = callPackageDir ./genai-toolbox;
 }
