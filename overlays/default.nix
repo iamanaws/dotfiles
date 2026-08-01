@@ -18,12 +18,12 @@
     t3code = prev.t3code.override {
       t3code-unwrapped = final.callPackage "${
         final.applyPatches {
-          name = "t3code-0.0.29-source";
+          name = "t3code-0.0.31-source";
           src = "${prev.path}/pkgs/by-name/t3/t3code";
           patches = [
             (final.fetchpatch2 {
-              url = "https://github.com/NixOS/nixpkgs/pull/546533.patch?full_index=1";
-              hash = "sha256-Tz2s1jJoLhGLLG8DY6RQc2OCIAw9oVY79I+gKMRXK9s=";
+              url = "https://github.com/NixOS/nixpkgs/pull/547678.patch?full_index=1";
+              hash = "sha256-otebz1pRHhU3JLvCgiDyRekIpGkB8fxMZcoROqJzl7E=";
             })
           ];
           patchFlags = [ "-p5" ];
