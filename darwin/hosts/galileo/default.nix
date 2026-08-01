@@ -37,7 +37,9 @@ in
 
   environment.systemPackages = with pkgs; [
     asciidoctor
+    bitbucket-cli
     cachix
+    clickup-cli
     code-cursor
     colima
     docker
@@ -55,7 +57,6 @@ in
     # spotify
     nodejs
     corepack
-    bun
   ];
 
   system.defaults = {
