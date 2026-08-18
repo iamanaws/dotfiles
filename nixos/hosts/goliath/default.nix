@@ -16,7 +16,7 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   nix-mineral.settings.kernel.binfmt-misc = true;
 
-  specialisation."debug-6.19-bisect-4621c338".configuration =
+  specialisation."debug-6.19-test-no-dynamic-of".configuration =
     let
       # This is the release-25.11 revision that packaged linux_testing
       # 6.19-rc5. It reproduces the cached GCC 14.3/Rust 1.91 build recipe.
@@ -36,6 +36,13 @@
               hash = "sha256-xkklj2W541PgaxsClXzdmJ5Jqudr5PoMXUlShaz9rrU=";
             };
           };
+          # This is the sole generated-config difference between the bad
+          # 4621c338 kernel and good e55feea kernel. The bad tree's Raspberry
+          # Pi RP1 module selects it, so disable that irrelevant module too.
+          structuredExtraConfig = {
+            MISC_RP1 = lib.mkForce lib.kernel.no;
+            PCI_DYNAMIC_OF_NODES = lib.mkForce lib.kernel.no;
+          };
         }).overrideAttrs
           (old: {
             # Compatibility attributes expected by current NixOS modules. Passthru
@@ -47,8 +54,8 @@
           });
     in
     {
-      # Next first-parent midpoint between 4d6fe1dd (bad) and e55feea
-      # (good). The commit is the ceph-for-6.19-rc5 pull merge.
+      # Isolate the only x86 kernel-config change introduced by e55feea while
+      # retaining the otherwise known-bad 4621c338 source tree.
       boot.kernelPackages = lib.mkForce (kernelPkgs.linuxPackagesFor bisectKernel);
 
       # Force diagnostic settings so nix-mineral cannot suppress the console or
@@ -93,7 +100,7 @@
         };
       };
 
-      system.nixos.tags = [ "6.19-bisect-4621c338" ];
+      system.nixos.tags = [ "6.19-test-no-dynamic-of" ];
       services.xserver.videoDrivers = lib.mkForce [ "modesetting" ];
 
       nix-mineral = {
