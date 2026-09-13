@@ -18,31 +18,30 @@
 
   specialisation."debug-linux-bisect".configuration =
     let
-      testKernel = pkgs.linuxKernel.kernels.linux_6_12.override {
+      testKernel = pkgs.linuxKernel.kernels.linux_6_18.override {
         argsOverride = {
-          version = "6.14.0-rc1";
-          modDirVersion = "6.14.0-rc1";
-          stdenv = pkgs.gcc14Stdenv;
+          version = "6.18.44";
+          modDirVersion = "6.18.44";
           # The current Nixpkgs config does not exactly match this historical
           # source snapshot. Ignore options unavailable at this commit.
           ignoreConfigErrors = true;
           src = pkgs.fetchurl {
-            url = "https://github.com/torvalds/linux/archive/3dc8adeeefa0256917d1e3978c8b4a06346816ed.tar.gz";
-            hash = "sha256-YBJRaHxbeBgz0t6BYlbHXmSmrXu1tEXclXidhi7DNFE=";
+            url = "https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.18.44.tar.xz";
+            hash = "sha256-D3LZOPBoKOgskEBRdP5XIofbe/4Ini/EZXKpmn8kDUM=";
           };
-        };
-        structuredExtraConfig = {
-          PCI_DYNAMIC_OF_NODES = lib.mkForce lib.kernel.yes;
-          # Keep Rust out of the test to avoid historical toolchain issues.
-          RUST = lib.mkForce lib.kernel.no;
         };
       };
     in
     {
-      # First-bad: 1f340724419e PCI: of: Create device tree PCI host bridge node
-      # Good parent: 3dc8adeeefa0 (constify of_pci_get_addr_flags)
-      # Author: Herve Codina; Acked in pci/devtree-create by Bjorn Helgaas.
+      # Test keeping the bridge node while omitting properties that need
+      # a subordinate bus. This replaces the earlier skip-node guard.
       boot.kernelPackages = lib.mkForce (pkgs.linuxPackagesFor testKernel);
+      boot.kernelPatches = [
+        {
+          name = "pci-of-optional-bus-properties";
+          patch = ./kernel-debug/pci-of-optional-bus-properties.patch;
+        }
+      ];
       boot.kernelParams = lib.mkAfter [
         "ignore_loglevel"
         "loglevel=8"
@@ -51,7 +50,7 @@
         "panic_on_warn=0"
       ];
 
-      system.nixos.tags = [ "bisect-3dc8adeeefa0" ];
+      system.nixos.tags = [ "pci-of-keep-node-6.18.44" ];
     };
 
   services.xserver.xkb.layout = "latam";
