@@ -49,7 +49,7 @@ in
           allow = [ ];
         };
       };
-    skills = { };
+      skills = { };
     };
 
     codex = {
