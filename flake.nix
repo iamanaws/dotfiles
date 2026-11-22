@@ -91,17 +91,14 @@
 
       hostsFor = backend: hostRegistry.byBackend.${backend} or { };
 
-      forAllSystems =
-        f:
-        lib.genAttrs lib.systems.flakeExposed (
-          system:
-          f (
-            import nixpkgs {
-              inherit system;
-              config = import ./lib/nixpkgsConfig.nix { inherit lib; };
-            }
-          )
-        );
+      pkgsFor = lib.genAttrs lib.systems.flakeExposed (
+        system:
+        import nixpkgs {
+          inherit system;
+          config = import ./lib/nixpkgsConfig.nix { inherit lib; };
+        }
+      );
+      forAllSystems = f: lib.mapAttrs (_: f) pkgsFor;
     in
     {
       formatter = forAllSystems (pkgs: pkgs.nixfmt-tree);
