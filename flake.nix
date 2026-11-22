@@ -116,6 +116,10 @@
         inherit (inputs) nur;
       };
 
+      legacyPackages = forAllSystems (pkgs: {
+        tests = import ./tests { inherit pkgs; };
+      });
+
       ### NixOS Configurations ###
       nixosConfigurations = lib.mapAttrs (_: host: mkNixos { inherit host; }) (hostsFor "nixos");
 
