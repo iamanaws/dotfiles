@@ -75,7 +75,14 @@
     # VDPAU_DRIVER = "va_gl";
     NVD_BACKEND = "direct";
     LIBVA_DRIVER_NAME = "nvidia";
-    MOZ_DISABLE_RDD_SANDBOX = "1";
+
+    # Firefox decodes video on the CPU, the NVIDIA workaround is unsafe
+    # because it turns off the decoder sandbox
+    #
+    # Vulkan decoding keeps the sandbox but locks up Turing cards like this one
+    # Lock up https://bugzilla.mozilla.org/show_bug.cgi?id=2058290
+    # On by default https://bugzilla.mozilla.org/show_bug.cgi?id=2053144
+    # media.hardware-video-decoding-vulkan.enabled = true
 
     # GBM_BACKEND = "nvidia-drm";
     # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
