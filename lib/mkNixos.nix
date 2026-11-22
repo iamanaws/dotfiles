@@ -20,12 +20,7 @@ let
     hostConfig
     ;
   homeUsersRoot = inputs.self + "/home/users";
-  rawNixosModules = hostUtils.mkModuleTree (inputs.self + /nixos);
-  nixosModules =
-    rawNixosModules
-    // lib.filterAttrs (name: _: !(builtins.hasAttr name rawNixosModules)) (
-      rawNixosModules.modules or { }
-    );
+  nixosModules = hostUtils.mkNixosModules (inputs.self + /nixos);
 
   hasHardware = builtins.pathExists (path + "/hardware.nix");
   hasDisko = builtins.pathExists (path + "/disko.nix");

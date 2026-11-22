@@ -15,12 +15,7 @@ let
     hostConfig
     ;
   darwinModules = hostUtils.mkModuleTree (inputs.self + /darwin);
-  rawNixosModules = hostUtils.mkModuleTree (inputs.self + /nixos);
-  nixosModules =
-    rawNixosModules
-    // lib.filterAttrs (name: _: !(builtins.hasAttr name rawNixosModules)) (
-      rawNixosModules.modules or { }
-    );
+  nixosModules = hostUtils.mkNixosModules (inputs.self + /nixos);
   homeUsersRoot = inputs.self + "/home/users";
 
   hmModuleFor =
