@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   nixosModules,
   ...
@@ -43,22 +42,6 @@
 
   programs.solaar.enable = true;
   programs.zoom-us.enable = true;
-
-  # Keep GNOME as the default, but select Hyprland for iamanaws.
-  systemd.services.display-manager.preStart = lib.mkAfter ''
-    busctl=${pkgs.systemd}/bin/busctl
-    read -r _ account_path < <(
-      "$busctl" call \
-        org.freedesktop.Accounts /org/freedesktop/Accounts \
-        org.freedesktop.Accounts FindUserByName s iamanaws
-    )
-    account_path="''${account_path//\"/}"
-
-    for setting in SetSession:hyprland SetSessionType:wayland; do
-      "$busctl" call org.freedesktop.Accounts "$account_path" \
-        org.freedesktop.Accounts.User "''${setting%%:*}" s "''${setting#*:}"
-    done
-  '';
 
   environment.systemPackages = with pkgs; [
     aseprite
