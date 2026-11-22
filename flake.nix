@@ -111,7 +111,10 @@
         in
         lib.filterAttrs (_: v: lib.isDerivation v && lib.meta.availableOn pkgs.stdenv.hostPlatform v) all
       );
-      overlays = import ./overlays { inherit (inputs) nur; };
+      overlays = import ./overlays {
+        inherit lib;
+        inherit (inputs) nur;
+      };
 
       ### NixOS Configurations ###
       nixosConfigurations = lib.mapAttrs (_: host: mkNixos { inherit host; }) (hostsFor "nixos");
